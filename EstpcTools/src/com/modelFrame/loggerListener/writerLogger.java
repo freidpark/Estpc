@@ -66,7 +66,7 @@ public class writerLogger implements LoggerListener {
 			fw.close();
 
 		} catch (IOException e) {
-			System.out.println(sb + " " + e.getMessage()+"\n");
+			System.out.println(sb + " " +"txtWriterLogger(String Message)의 에러 : "+ e.getMessage()+"\n");
 		}
 
 	}

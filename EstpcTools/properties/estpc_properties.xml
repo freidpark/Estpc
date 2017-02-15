@@ -3,27 +3,27 @@
     <!-- Query Set in cbpark_projects -->
     <requestInfo id="log_info" type="SQ">
         <attribute alias="" type="STRING" value="로그경로"/>
-        <log_path>C:\Users\freid\workspace\EstpcTools\log</log_path>
+        <log_path>C:\Users\freid\git\Estpc\EstpcTools\log</log_path>
         <log_file>estpc.log</log_file>
     </requestInfo>
     <requestInfo id="userStore_info" type="SQ">
         <attribute alias="" type="STRING" value="사용자_경로"/>
-        <userStore_path>C:\Users\freid\workspace\EstpcTools\properties</userStore_path>
+        <userStore_path>C:\Users\freid\git\Estpc\EstpcTools\properties</userStore_path>
         <userStore_file>estpc_dataMap.xml</userStore_file>
     </requestInfo>
     <requestInfo id="system_info">
         <java.version>1.8.0_121</java.version>
-        <java.vendor>C:\Users\freid\workspace\EstpcTools</java.vendor>
+        <java.vendor>Oracle Corporation</java.vendor>
         <java.vendor.url>http://java.oracle.com/</java.vendor.url>
-        <java.home>C:\Program Files\Java\jdk1.8.0_65\jre</java.home>
+        <java.home>C:\Program Files\Java\jre1.8.0_121</java.home>
         <java.class.version>52.0</java.class.version>
-        <java.class.path>C:\Users\freid\export_tst\estIPscan\classes</java.class.path>
+        <java.class.path>C:\Users\freid\git\Estpc\EstpcTools\classes;C:\Program Files\Java\jdk1.8.0_121\bin;C:\Users\freid\git\Estpc\EstpcTools\miglayout15-swing.jar;C:\Users\freid\git\Estpc\EstpcTools\jgoodies-forms-1.8.0.jar</java.class.path>
         <os.name>Windows 7</os.name>
         <os.arch>x86</os.arch>
         <os.version>6.1</os.version>
         <file.separator>\</file.separator>
         <user.name>freid</user.name>
         <user.home>C:\Users\freid</user.home>
-        <user.dir>C:\Users\freid\export_tst\estIPscan</user.dir>
+        <user.dir>C:\Users\freid\git\Estpc\EstpcTools</user.dir>
     </requestInfo>
 </ui-query-mapping>

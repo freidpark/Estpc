@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -12,9 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import com.modelFrame.fileHandler.CallFileHandler;
 import com.modelFrame.fileHandler.ServiceStarter;
 import com.modelFrame.loggerListener.LoggerListener;
 import com.modelFrame.loggerListener.writerLogger;
@@ -48,15 +51,6 @@ public class HomeDisplay {
 	private JTextField txt_searchWord;
 	private JTable table_userList;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-//	private JTextField txt_StoreName;
-//	private JTextField txt_sAclass;
-//	private JTextField txt_sBclass;
-//	private JTextField txt_sCclass;
-//	private JTextField txt_sDclass;
-//	private JTextField txt_eAclass;
-//	private JTextField txt_eBclass;
-//	private JTextField txt_eCclass;
-//	private JTextField txt_eDclass;
 
 	/**
 	 * Launch the application.
@@ -346,6 +340,74 @@ public class HomeDisplay {
 		txt_eDclassIP.setColumns(10);
 		
 		JButton button_sv = new JButton("등록하기");
+		button_sv.addActionListener(new ActionListener() {
+			
+			private String store_sIP;
+			private String store_eIP;
+			private boolean frag = true; //모든 정보가 정상여부 판단
+			int spaceKey ; //공백이 있는 객체의 hashmap key값 저장
+			
+			
+			public void actionPerformed(ActionEvent arg0) {
+
+				CallFileHandler callFileHandler = new CallFileHandler();
+				HashMap<Integer, String> hashMap = new HashMap<Integer, String>();
+
+				JOptionPane.showMessageDialog(null, "저장하시겠습니까?");
+				JOptionPane.showMessageDialog(null, "저장되였습니다.");
+
+				hashMap.put(1, txtStoreName.getText());
+				hashMap.put(2, txt_sAclassIP.getText());
+				hashMap.put(3, txt_sBclassIP.getText());
+				hashMap.put(4, txt_sCclassIP.getText());
+				hashMap.put(5, txt_sDclassIP.getText());
+				hashMap.put(6, txt_eAclassIP.getText());
+				hashMap.put(7, txt_eBclassIP.getText());
+				hashMap.put(8, txt_eCclassIP.getText());
+				hashMap.put(9, txt_eDclassIP.getText());
+
+				for (int idkey : hashMap.keySet()){
+
+					if(hashMap.get(idkey).equals("")){
+						frag = false;
+						spaceKey = idkey;
+						break;
+					}
+				}
+
+				if(frag){
+
+					store_sIP = "";
+					store_sIP+=txt_sAclassIP.getText();
+					store_sIP+=".";
+					store_sIP+=txt_sBclassIP.getText();
+					store_sIP+=".";
+					store_sIP+=txt_sCclassIP.getText();
+					store_sIP+=".";
+					store_sIP+=txt_sDclassIP.getText();
+
+					store_eIP = "";
+					store_eIP+=txt_eAclassIP.getText();
+					store_eIP+=".";
+					store_eIP+=txt_eBclassIP.getText();
+					store_eIP+=".";
+					store_eIP+=txt_eCclassIP.getText();
+					store_eIP+=".";
+					store_eIP+=txt_eDclassIP.getText();
+
+					callFileHandler.setStoreInfo(txtStoreName.getText(), store_sIP, store_eIP);
+
+				}else if(spaceKey == 1){
+					JOptionPane.showMessageDialog(null, "상호명 입력은 필수입니다.");
+				}else{
+					JOptionPane.showMessageDialog(null, "IP 입력은 필수 입니다.");
+				}
+
+
+
+				
+			}
+		});
 		
 		JButton button_rw = new JButton("다시쓰기");
 		

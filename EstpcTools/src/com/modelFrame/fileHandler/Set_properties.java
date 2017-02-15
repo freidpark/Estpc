@@ -64,7 +64,7 @@ public class Set_properties  {
 			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 			Document document = documentBuilder.parse(estpc_propertiese);
 			NodeList nodelist_requestInfo = document.getElementsByTagName("requestInfo");
-
+			
 			boolean doOrNot = false ; // system_info xml정보를 수정할지 삽입할지 결정
 
 			for (int i = 0; i < nodelist_requestInfo.getLength(); i++) {// 해쉬맵에  id를 모두 저장한다
@@ -80,7 +80,6 @@ public class Set_properties  {
 				}
 			}
 			
-
 			if (doOrNot) {//system_info 정보를 수정한다
 
 				document.getElementsByTagName("java.version").item(0).setTextContent(jVersion);
@@ -92,11 +91,11 @@ public class Set_properties  {
 				document.getElementsByTagName("os.name").item(0).setTextContent(osName);
 				document.getElementsByTagName("os.arch").item(0).setTextContent(osArch);
 				document.getElementsByTagName("os.version").item(0).setTextContent(osVersion);
-				document.getElementsByTagName("jfile.separator").item(0).setTextContent(fileSeparator);
+				document.getElementsByTagName("file.separator").item(0).setTextContent(fileSeparator);
 				document.getElementsByTagName("user.name").item(0).setTextContent(userName);
 				document.getElementsByTagName("user.home").item(0).setTextContent(userHome);
-				document.getElementsByTagName("userDir").item(0).setTextContent(userDir);
-
+				document.getElementsByTagName("user.dir").item(0).setTextContent(userDir);
+				
 			}else{
 
 				Element elementMK_requestInfo = document.createElement("requestInfo");
@@ -151,7 +150,6 @@ public class Set_properties  {
 			document.getElementsByTagName("log_path").item(0).setTextContent(current_path+"\\log");
 			document.getElementsByTagName("userStore_path").item(0).setTextContent(current_path+"\\properties");
 			
-
 			FileOutputStream fos = new FileOutputStream(estpc_propertiese);
 			OutputFormat outputFormat = new OutputFormat(document);
 			outputFormat.setIndenting(true);
@@ -163,7 +161,7 @@ public class Set_properties  {
 
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("getProperty_SystemInfo()의 에러: "+e.getMessage());
 		}
 	}
 
@@ -209,7 +207,7 @@ public class Set_properties  {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("callGetSetProperty_Info()의 에러 : "+e.getMessage());
 		}
 	}
 
