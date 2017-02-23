@@ -19,17 +19,16 @@ public class TestMain {
 		
 		loginfo.txtWriterLogger("console-mode start");
 		
-		CallFileHandler cf = new CallFileHandler();
+//		CallFileHandler cf = new CallFileHandler();
 		
 //		loginfo.txtWriterLogger("timer start");
 //		
-		SaveFileHandler saveFileHandler = new SaveFileHandler("DM_OVPS_RESULT");
-		saveFileHandler.asSaveFile();
-		
 		AutoTimer autotimer = new AutoTimer();
-//		autotimer.runTimer();//완료
+		autotimer.runTimer();//완료
+//		SaveFileHandler saveFileHandler = new SaveFileHandler();
 //		autotimer.mkComand();//완료
-//		autotimer.collecteData();//진행중
+//		saveFileHandler.asSaveFile();//완료
+		
 		
 		
 //		Process cmdPorcess = Runtime.getRuntime().exec("cmd C:/Users/freid/Desktop/Ipscan/saveLog dir");

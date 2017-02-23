@@ -3,6 +3,7 @@ package com.modelFrame.timerTool;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -12,6 +13,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 
+import com.modelFrame.fileHandler.SaveFileHandler;
 import com.modelFrame.fileHandler.Set_properties;
 import com.modelFrame.loggerListener.LoggerListener;
 import com.modelFrame.loggerListener.WriterLogger;
@@ -21,6 +23,9 @@ public class AutoTimer {
 	HashMap<Integer, String> userName_list= new HashMap<Integer, String>();
 	HashMap<Integer, String> sIP_list= new HashMap<Integer, String>();
 	HashMap<Integer, String> eIP_list= new HashMap<Integer, String>();
+	StringBuilder fileNmb = new StringBuilder();
+	String fileNm;
+	
 	LoggerListener logger = new WriterLogger();
 	
 	Timer autotimer = new Timer();
@@ -32,7 +37,9 @@ public class AutoTimer {
 			
 			if(count<5){
 				
-				System.out.println("타이머가 나를 실행 시켰다");
+				System.out.println("타이머가 나를 실행 시켰다"+count);
+				logger.txtWriterLogger("타이머가 실행 되었다."+count);
+				collecteData();
 				count++;
 			}else{
 				System.out.println("타이머가 나를 종료 시켰다");
@@ -49,7 +56,7 @@ public class AutoTimer {
 //		autotimer.schedule(autotimer_content, 3000);
 	}
 	
-	public void mkComand(){
+	public void mkComandNfile(){
 		String stringCommand ;
 		
 		try {
@@ -124,10 +131,24 @@ public class AutoTimer {
 	}
 	
 	public void collecteData(){
+		mkComandNfile();
+		SaveFileHandler saveFileHandler = new SaveFileHandler();
+		for (int j = 1; j < userName_list.keySet().size()+1; j++) {
+			
+			fileNm = userName_list.get(j)+".txt";
+			saveFileHandler.asSaveTheStatisticFile(coutnAlive(fileNm));
+		}
+		
+	}
+	
+	public int coutnAlive(String fileName){
+		int total = 0;
+		int countDead = 0;
+		int alive = 0;
+		
 		try {
-			int total = 0;
 //			File file = new File(Set_properties.getAppSaveFiles_path(),userName_list.get(1));
-			File file = new File(Set_properties.getAppSaveFiles_path(),"행복.txt");
+			File file = new File(Set_properties.getAppSaveFiles_path(),fileName);
 			FileReader fileReader = new FileReader(file);
 			BufferedReader br = new BufferedReader(fileReader); 
 			String line = null;
@@ -136,18 +157,20 @@ public class AutoTimer {
 				line=br.readLine();
 				lineArrary = line.split(",");
 				if(lineArrary[1].equalsIgnoreCase("Dead")){
-					total++;
+					countDead++;
 				};
-				System.out.println(lineArrary.length);
-				System.out.println();
-				System.out.println(line);
+				total++;
+//				System.out.println(line);
+//				System.out.println("countDead 값 : "+countDead);
+//				System.out.println("total 값 : "+total);
 			}
+			alive = (total - countDead);
+//			System.out.println("Alive PC 값 : "+(total - countDead));
 			
 		} catch (Exception e) {
-			System.out.println("collecteData()의 오류 : "+e.getMessage());
+			System.out.println("coutnAlive()의 오류 : "+e.getMessage());
 		}
-		
+		return alive;
 	}
-	
 
 }

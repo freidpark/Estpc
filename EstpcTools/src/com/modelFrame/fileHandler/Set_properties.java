@@ -23,9 +23,11 @@ public class Set_properties  {
 	private static String log_file;
 	private static String userStore_path;
 	private static String userStore_file;
-	private static String app_path;
 	private static String appSaveFiles_path;
+	private static String app_path;
 	private static String app_file;
+	private static String data_path;
+	private static String data_file;
 	
 
 	private static String current_path;
@@ -155,6 +157,7 @@ public class Set_properties  {
 			document.getElementsByTagName("userStore_path").item(0).setTextContent(current_path+"\\properties");
 			document.getElementsByTagName("app_path").item(0).setTextContent(current_path+"\\app");
 			document.getElementsByTagName("appSaveFiles_path").item(0).setTextContent(current_path+"\\app\\saveFiles");
+			document.getElementsByTagName("data_path").item(0).setTextContent(current_path+"\\data");
 			
 			FileOutputStream fos = new FileOutputStream(estpc_propertiese);
 			OutputFormat outputFormat = new OutputFormat(document);
@@ -193,27 +196,24 @@ public class Set_properties  {
 
 				switch (requestInfo_id) {
 				case "log_info":
-					log_path = element_requestInfo
-					.getElementsByTagName("log_path").item(0)
-					.getTextContent();
-					log_file = element_requestInfo
-							.getElementsByTagName("log_file").item(0)
-							.getTextContent();
+					log_path = element_requestInfo.getElementsByTagName("log_path").item(0).getTextContent();
+					log_file = element_requestInfo.getElementsByTagName("log_file").item(0).getTextContent();
 					break;
 
 				case "userStore_info":
-					userStore_path = element_requestInfo
-					.getElementsByTagName("userStore_path").item(0)
-					.getTextContent();
-					userStore_file = element_requestInfo
-							.getElementsByTagName("userStore_file").item(0)
-							.getTextContent();
+					userStore_path = element_requestInfo.getElementsByTagName("userStore_path").item(0).getTextContent();
+					userStore_file = element_requestInfo.getElementsByTagName("userStore_file").item(0).getTextContent();
 					break;
 					
 				case "app_info":
 					app_path = element_requestInfo.getElementsByTagName("app_path").item(0).getTextContent();
 					app_file = element_requestInfo.getElementsByTagName("app_file").item(0).getTextContent();
 					appSaveFiles_path = element_requestInfo.getElementsByTagName("appSaveFiles_path").item(0).getTextContent();
+					break;
+					
+				case "data_info":
+					data_path = element_requestInfo.getElementsByTagName("data_path").item(0).getTextContent();
+					data_file = element_requestInfo.getElementsByTagName("data_file").item(0).getTextContent();
 					break;
 				}
 			}
@@ -252,14 +252,27 @@ public class Set_properties  {
 	public static String getAppSaveFiles_path() {
 		return appSaveFiles_path;
 	}
-	//
+
+	public static String getData_path() {
+		return data_path;
+	}
+
+	public static String getData_file() {
+		return data_file;
+	}
+
 	//	public static void setAppSaveFiles_path(String appSaveFiles_path) {
 	//		Set_properties.appSaveFiles_path = appSaveFiles_path;
 	//	}
 	//	public static void setApp_file(String app_file) {
 	//		Set_properties.app_file = app_file;
 	//	}
-
+	//	public static void setData_path(String data_path) {
+	//		Set_properties.data_path = data_path;
+	//	}
+	//	public static void setData_file(String data_file) {
+	//		Set_properties.data_file = data_file;
+	//	}
 	//	public static void setApp_path(String app_path) {
 	//		Set_properties.app_path = app_path;
 	//	}
