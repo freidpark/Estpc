@@ -11,6 +11,12 @@
         <userStore_path>C:\Users\freid\git\Estpc\EstpcTools\properties</userStore_path>
         <userStore_file>estpc_dataMap.xml</userStore_file>
     </requestInfo>
+    <requestInfo id="app_info" type="SQ">
+        <attribute alias="" type="STRING" value="어플리케이션_경로"/>
+        <app_path>C:\Users\freid\git\Estpc\EstpcTools\app</app_path>
+        <app_file>ipscan_221-bawday.exe</app_file>
+        <appSaveFiles_path>C:\Users\freid\git\Estpc\EstpcTools\app\saveFiles</appSaveFiles_path>
+    </requestInfo>
     <requestInfo id="system_info">
         <java.version>1.8.0_121</java.version>
         <java.vendor>Oracle Corporation</java.vendor>

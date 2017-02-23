@@ -3,6 +3,7 @@
     <!-- Query Set in cbpark_projects -->
     <user id="store" type="DQ">
         <attribute alias="MgrNum" type="STRING" value="관리번호"/>
+        <!-- id="default"는 기본 양식입니다. 절대 지우지 마세요. -->
         <store_num id="default">
             <store_name/>
             <store_sIP/>
@@ -10,33 +11,19 @@
             <store_regitDay/>
             <store_modifiDay/>
         </store_num>
-        <store_num id="이스트">
-            <store_name>이스트</store_name>
-            <store_sIP>2.2.2.2</store_sIP>
-            <store_eIP>1.1.1.1</store_eIP>
-            <store_regitDay>2017-6-9</store_regitDay>
-            <store_modifiDay>2017-6-9</store_modifiDay>
-        </store_num>
         <store_num id="행복">
             <store_name>행복</store_name>
-            <store_sIP>2.1.1.1</store_sIP>
-            <store_eIP>1.1.1.1</store_eIP>
+            <store_sIP>110.15.193.130</store_sIP>
+            <store_eIP>110.15.193.230</store_eIP>
             <store_regitDay>2017-6-9</store_regitDay>
             <store_modifiDay>2017-6-9</store_modifiDay>
         </store_num>
-        <store_num id="a">
-            <store_name>a</store_name>
-            <store_sIP>a.a.a.a</store_sIP>
-            <store_eIP>a.a.a.a</store_eIP>
-            <store_regitDay>2017-7-14</store_regitDay>
-            <store_modifiDay/>
-        </store_num>
-        <store_num id="33">
-            <store_name>33</store_name>
-            <store_sIP>1.2.3.4</store_sIP>
-            <store_eIP>5.6.7.8</store_eIP>
-            <store_regitDay>2017-7-14</store_regitDay>
-            <store_modifiDay/>
+        <store_num id="스타">
+            <store_name>스타</store_name>
+            <store_sIP>110.15.192.130</store_sIP>
+            <store_eIP>110.15.192.180</store_eIP>
+            <store_regitDay>2017-2-15</store_regitDay>
+            <store_modifiDay>2017-2-15</store_modifiDay>
         </store_num>
     </user>
 </ui-query-mapping>

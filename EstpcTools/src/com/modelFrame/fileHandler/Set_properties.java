@@ -12,7 +12,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.modelFrame.loggerListener.LoggerListener;
-import com.modelFrame.loggerListener.writerLogger;
+import com.modelFrame.loggerListener.WriterLogger;
 import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import com.sun.org.apache.xml.internal.serialize.XML11Serializer;
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
@@ -23,7 +23,11 @@ public class Set_properties  {
 	private static String log_file;
 	private static String userStore_path;
 	private static String userStore_file;
+	private static String app_path;
+	private static String appSaveFiles_path;
+	private static String app_file;
 	
+
 	private static String current_path;
 	private static File estpc_propertiese;
 
@@ -32,7 +36,7 @@ public class Set_properties  {
 
 		getProperty_SystemInfo();
 		callGetSetProperty_Info();
-		LoggerListener loginfo = new writerLogger();
+		LoggerListener loginfo = new WriterLogger();
 		loginfo.txtWriterLogger(" == #### Programming is loading to start... ####");
 		loginfo.txtWriterLogger(" == ## Step01 : Getting System-properties ...");
 		loginfo.txtWriterLogger(" == ## Step02 : Properties have been loaded...");
@@ -146,9 +150,11 @@ public class Set_properties  {
 
 			}
 			
-			//로그 및 유저 파일 경로 업데이트
+			//파일 경로 업데이트
 			document.getElementsByTagName("log_path").item(0).setTextContent(current_path+"\\log");
 			document.getElementsByTagName("userStore_path").item(0).setTextContent(current_path+"\\properties");
+			document.getElementsByTagName("app_path").item(0).setTextContent(current_path+"\\app");
+			document.getElementsByTagName("appSaveFiles_path").item(0).setTextContent(current_path+"\\app\\saveFiles");
 			
 			FileOutputStream fos = new FileOutputStream(estpc_propertiese);
 			OutputFormat outputFormat = new OutputFormat(document);
@@ -203,6 +209,12 @@ public class Set_properties  {
 							.getElementsByTagName("userStore_file").item(0)
 							.getTextContent();
 					break;
+					
+				case "app_info":
+					app_path = element_requestInfo.getElementsByTagName("app_path").item(0).getTextContent();
+					app_file = element_requestInfo.getElementsByTagName("app_file").item(0).getTextContent();
+					appSaveFiles_path = element_requestInfo.getElementsByTagName("appSaveFiles_path").item(0).getTextContent();
+					break;
 				}
 			}
 
@@ -229,6 +241,28 @@ public class Set_properties  {
 		return current_path;
 	}
 
+	public static String getApp_path() {
+		return app_path;
+	}
+
+	public static String getApp_file() {
+		return app_file;
+	}
+
+	public static String getAppSaveFiles_path() {
+		return appSaveFiles_path;
+	}
+	//
+	//	public static void setAppSaveFiles_path(String appSaveFiles_path) {
+	//		Set_properties.appSaveFiles_path = appSaveFiles_path;
+	//	}
+	//	public static void setApp_file(String app_file) {
+	//		Set_properties.app_file = app_file;
+	//	}
+
+	//	public static void setApp_path(String app_path) {
+	//		Set_properties.app_path = app_path;
+	//	}
 	//	public static void setCurrent_path(String current_path) {
 	//		Set_properties.current_path = current_path;
 	//	}

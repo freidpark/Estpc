@@ -20,7 +20,7 @@ import javax.swing.JTabbedPane;
 import com.modelFrame.fileHandler.CallFileHandler;
 import com.modelFrame.fileHandler.ServiceStarter;
 import com.modelFrame.loggerListener.LoggerListener;
-import com.modelFrame.loggerListener.writerLogger;
+import com.modelFrame.loggerListener.WriterLogger;
 import javax.swing.border.TitledBorder;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
@@ -79,7 +79,7 @@ public class HomeDisplay {
 		ServiceStarter ss = new ServiceStarter();
 		ss.serviceStarter();
 
-		LoggerListener loginfo = new writerLogger();
+		LoggerListener loginfo = new WriterLogger();
 
 		loginfo.txtWriterLogger("== ## Step03 : Programming START !!!");
 
@@ -339,22 +339,18 @@ public class HomeDisplay {
 		txt_eDclassIP = new JTextField();
 		txt_eDclassIP.setColumns(10);
 		
-		JButton button_sv = new JButton("등록하기");
+		JButton button_sv = new JButton("등록/수정하기");
 		button_sv.addActionListener(new ActionListener() {
 			
 			private String store_sIP;
 			private String store_eIP;
+			private int success; //0실패, 1등록,2수정
 			private boolean frag = true; //모든 정보가 정상여부 판단
-			int spaceKey ; //공백이 있는 객체의 hashmap key값 저장
-			
 			
 			public void actionPerformed(ActionEvent arg0) {
 
 				CallFileHandler callFileHandler = new CallFileHandler();
 				HashMap<Integer, String> hashMap = new HashMap<Integer, String>();
-
-				JOptionPane.showMessageDialog(null, "저장하시겠습니까?");
-				JOptionPane.showMessageDialog(null, "저장되였습니다.");
 
 				hashMap.put(1, txtStoreName.getText());
 				hashMap.put(2, txt_sAclassIP.getText());
@@ -367,14 +363,21 @@ public class HomeDisplay {
 				hashMap.put(9, txt_eDclassIP.getText());
 
 				for (int idkey : hashMap.keySet()){
-
-					if(hashMap.get(idkey).equals("")){
+					if( hashMap.get(idkey).equals("")){
 						frag = false;
-						spaceKey = idkey;
-						break;
+						if (idkey == 1){
+							JOptionPane.showMessageDialog(null, "상호명 입력은 필수입니다.");
+							break;
+						}else {
+							JOptionPane.showMessageDialog(null, "IP 입력은 필수 입니다.");
+							break;
+						}
+					}else {
+						frag = true;
 					}
 				}
-
+				
+				
 				if(frag){
 
 					store_sIP = "";
@@ -395,17 +398,16 @@ public class HomeDisplay {
 					store_eIP+=".";
 					store_eIP+=txt_eDclassIP.getText();
 
-					callFileHandler.setStoreInfo(txtStoreName.getText(), store_sIP, store_eIP);
+					success = callFileHandler.setStoreInfo(txtStoreName.getText(), store_sIP, store_eIP);
 
-				}else if(spaceKey == 1){
-					JOptionPane.showMessageDialog(null, "상호명 입력은 필수입니다.");
-				}else{
-					JOptionPane.showMessageDialog(null, "IP 입력은 필수 입니다.");
+					if(success == 0){
+						JOptionPane.showMessageDialog(null, "등록 실패!! 관리자에게 문의하세요.");
+					}else if(success == 1){
+						JOptionPane.showMessageDialog(null, "등록 되였습니다.");
+					}else if(success == 2){
+						JOptionPane.showMessageDialog(null, "수정 되였습니다.");
+					}
 				}
-
-
-
-				
 			}
 		});
 		

@@ -9,7 +9,7 @@ import com.modelFrame.fileHandler.CallFileHandler;
 import com.modelFrame.fileHandler.Set_properties;
 
 
-public class writerLogger implements LoggerListener {
+public class WriterLogger implements LoggerListener {
 
 	File file;
 	FileWriter fw;

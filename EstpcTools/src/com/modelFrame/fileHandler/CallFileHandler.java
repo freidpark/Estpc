@@ -13,7 +13,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.modelFrame.loggerListener.LoggerListener;
-import com.modelFrame.loggerListener.writerLogger;
+import com.modelFrame.loggerListener.WriterLogger;
 import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
@@ -25,7 +25,7 @@ public class CallFileHandler  {
 
 	public CallFileHandler() {
 		estpc_dataMap = new File(Set_properties.getUserStore_path(),Set_properties.getUserStore_file());
-		loginfo = new writerLogger();
+		loginfo = new WriterLogger();
 	}
 
 	public void getStoreInfo(){
@@ -55,7 +55,6 @@ public class CallFileHandler  {
 						switch (store_num_id) {
 						case "1001":
 
-							//							loginfo.txtWriterLogger(element_store_num.getElementsByTagName("store_num").item(0).getTextContent()) ;           
 							loginfo.txtWriterLogger(element_store_num.getElementsByTagName("store_name").item(0).getTextContent());           
 							loginfo.txtWriterLogger(element_store_num.getElementsByTagName("store_sIP").item(0).getTextContent());            
 							loginfo.txtWriterLogger(element_store_num.getElementsByTagName("store_eIP").item(0).getTextContent());            
@@ -66,7 +65,6 @@ public class CallFileHandler  {
 
 						case "1002":
 
-							//							loginfo.txtWriterLogger(element_store_num.getElementsByTagName("store_num").item(0).getTextContent()) ;           
 							loginfo.txtWriterLogger(element_store_num.getElementsByTagName("store_name").item(0).getTextContent());           
 							loginfo.txtWriterLogger(element_store_num.getElementsByTagName("store_sIP").item(0).getTextContent());            
 							loginfo.txtWriterLogger(element_store_num.getElementsByTagName("store_eIP").item(0).getTextContent());            
@@ -90,9 +88,10 @@ public class CallFileHandler  {
 
 
 
-	public void setStoreInfo(String store_name, String store_sIP, String store_eIP) {
+	public int setStoreInfo(String store_name, String store_sIP, String store_eIP) {
 		
 		boolean existOrNot = false;
+		int result = 0; //0실패, 1등록, 2수정
 		Element element_store_num;
 		HashMap<Integer, String > hashMap = new HashMap<Integer, String>();
 
@@ -126,10 +125,12 @@ public class CallFileHandler  {
 						document.getElementsByTagName("store_name").item(i).setTextContent(store_name);
 						document.getElementsByTagName("store_sIP").item(i).setTextContent(store_sIP);
 						document.getElementsByTagName("store_eIP").item(i).setTextContent(store_eIP);
-						document.getElementsByTagName("store_modifiDay").item(i).setTextContent(currentTimeBaseYMD());
+						document.getElementsByTagName("store_modifiDay").item(i).setTextContent(currentTimeBaseYMD().toString());
 						
 					}
 				}
+				
+				result = 2;
 
 			}else{// 엘러먼트 생성
 				
@@ -146,13 +147,15 @@ public class CallFileHandler  {
 				element_store_eIP.appendChild(document.createTextNode(store_eIP));
 				mkElement_store_num.appendChild(element_store_eIP);
 				Element element_store_regitDay = document.createElement("store_regitDay");
-				element_store_regitDay.appendChild(document.createTextNode(currentTimeBaseYMD()));
+				element_store_regitDay.appendChild(document.createTextNode(currentTimeBaseYMD().toString()));
 				mkElement_store_num.appendChild(element_store_regitDay);
 				Element element_store_modifiDay = document.createElement("store_modifiDay");
 				element_store_modifiDay.appendChild(document.createTextNode(""));
 				mkElement_store_num.appendChild(element_store_modifiDay);
 
 				document.getElementsByTagName("user").item(0).appendChild(mkElement_store_num);
+				
+				result = 1;
 			}
 			
 			/**
@@ -171,15 +174,22 @@ public class CallFileHandler  {
 
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("에러는 "+e.getMessage());
+			System.out.println("CallFileHandler.setStoreInfo()의 에러 : "+e.getMessage());
+			result = 0;
 		}
 
+		return result;
 	}
 	
-	public String currentTimeBaseYMD(){
+	public StringBuilder currentTimeBaseYMD(){
 		
 		Calendar cal = Calendar.getInstance();
-		String BaseYMD = cal.get(Calendar.YEAR)+"-"+cal.get((Calendar.MONTH)+1)+"-"+cal.get(Calendar.DATE);
+		StringBuilder BaseYMD = new StringBuilder();
+		BaseYMD.append(cal.get(Calendar.YEAR));
+		BaseYMD.append("-");
+		BaseYMD.append(cal.get((Calendar.MONTH))+1);
+		BaseYMD.append("-");
+		BaseYMD.append(cal.get(Calendar.DATE));
 		
 		return BaseYMD;
 		
