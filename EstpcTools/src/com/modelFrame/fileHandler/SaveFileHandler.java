@@ -6,6 +6,9 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Calendar;
 
+import com.modelFrame.loggerListener.LoggerListener;
+import com.modelFrame.loggerListener.WriterLogger;
+
 public class SaveFileHandler {
 	
 	File file ;
@@ -13,10 +16,14 @@ public class SaveFileHandler {
 	private PrintWriter pw;
 	private FileWriter fw;
 	private BufferedWriter bw;
+	String replaceFileName;
 	
 	int currentDate;
 	int currentHour;
 	int currentMinute;
+	
+	LoggerListener loginfo = new WriterLogger();
+	
 	
 	public SaveFileHandler(){
 		registerBaseTime();
@@ -71,7 +78,7 @@ public class SaveFileHandler {
 			pw.close();
 			
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			loginfo.txtWriterLogger(e.getMessage());
 		}
 	}
 	
@@ -93,18 +100,18 @@ public class SaveFileHandler {
 	/**통계값을 AutoTimer객체로 부터 받아 파일에 쓴다.
 	 * @param alive 
 	 */
-	public void asSaveTheStatisticFile(int alive){
+	public void asSaveTheStatisticFile(int count , int alive, String userName){
 		
 		Calendar cal = Calendar.getInstance();
 		StringBuilder allFileName = new StringBuilder();
 		
 		int lastOfDay = lastOfDayStamp(cal.get(Calendar.YEAR),cal.get(Calendar.MONDAY)+1);
+		int year = cal.get(Calendar.YEAR);
 		int monthy = cal.get(Calendar.MONDAY)+1;
 		int date = cal.get(Calendar.DATE);
 		
-		allFileName.append(Set_properties.getData_file());
 		allFileName.append("_");
-		allFileName.append(cal.get(Calendar.YEAR));
+		allFileName.append(year);
 		
 		switch (Integer.toString(monthy).length()) {
 		case 1 :
@@ -130,9 +137,11 @@ public class SaveFileHandler {
 		
 		allFileName.append(".txt");
 		
-		String stringAllFileName = allFileName.toString();
+		String stringBaseYMD = allFileName.toString();
 		
-		file = new File(Set_properties.getData_path(),stringAllFileName);
+		replaceFileName = fileName.replaceAll(".txt", stringBaseYMD);
+		
+		file = new File(Set_properties.getData_path(),replaceFileName);
 		try {
 			
 			if (!file.exists()) {
@@ -142,14 +151,33 @@ public class SaveFileHandler {
 			fw = new FileWriter(file, true);
 		    bw = new BufferedWriter(fw);
 			pw = new PrintWriter(bw);
-			pw.println(currentDate+"일 "+currentHour+":"+currentMinute+"   "+"파일에 한줄씩 내용을 저장합니다. - "+alive);
+			pw.println(currentDate+"일 "+currentHour+":"+currentMinute+"   "+count+"회차 컴퓨터ON : "+alive+" "+userName);
 			pw.close();
 			
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			loginfo.txtWriterLogger(e.getMessage());
 		}
 	}
 	
+	
+	public void insertSpace(){
+		file = new File(Set_properties.getData_path(),replaceFileName);
+		try {
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+
+			fw = new FileWriter(file, true);
+			bw = new BufferedWriter(fw);
+			pw = new PrintWriter(bw);
+			pw.println(" ");
+			pw.close();
+
+		} catch (Exception e) {
+			loginfo.txtWriterLogger(e.getMessage());
+		}
+		
+	}
 
 	/**
 	 * saveFileHandler 가  실행될 시 최초 시간을 저장한다
@@ -192,6 +220,7 @@ public class SaveFileHandler {
 			currentMinute=m;
 			break;
 		}
+		loginfo.txtWriterLogger("집계시작 "+currentDate+"일 "+currentHour+"시 "+currentMinute+"분");
 	}
 
 }

@@ -17,7 +17,7 @@ public class TestMain {
 		
 		LoggerListener loginfo = new WriterLogger();
 		
-		loginfo.txtWriterLogger("console-mode start");
+		loginfo.txtWriterLogger("You are running 'console-mode start" );
 		
 //		CallFileHandler cf = new CallFileHandler();
 		
@@ -34,7 +34,7 @@ public class TestMain {
 //		Process cmdPorcess = Runtime.getRuntime().exec("cmd C:/Users/freid/Desktop/Ipscan/saveLog dir");
 		
 		 
-		loginfo.txtWriterLogger("end");
+		loginfo.txtWriterLogger("stared");
 	}
 
 }

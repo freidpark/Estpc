@@ -23,48 +23,63 @@ public class AutoTimer {
 	HashMap<Integer, String> userName_list= new HashMap<Integer, String>();
 	HashMap<Integer, String> sIP_list= new HashMap<Integer, String>();
 	HashMap<Integer, String> eIP_list= new HashMap<Integer, String>();
-	StringBuilder fileNmb = new StringBuilder();
-	String fileNm;
-	
 	LoggerListener logger = new WriterLogger();
+	StringBuilder fileNmb = new StringBuilder();
+	Timer mkTimer = new Timer();
+	Timer collecTimer = new Timer();
+	String fileNm;
+	int countA = 0; 
+	int countB = 0; 
+	int lifetime =  3; //반복 횟수 - 3회X24시간, 값 : 시간당 2회 , 3회
+	int lifeMinute = 20; //20분 간격으로 동작, 값 : 20분, 30분
+	int lifeSecond = lifeMinute*60;
+	int lifeMilliSecondPeriod =  lifeSecond*1000;//반복 간격시간
 	
-	Timer autotimer = new Timer();
-	TimerTask autotimer_content = new TimerTask(){
+	
+	public void runTimer(){
+		getIPlist();
+		mkTimer.schedule(makeFile_content, 1000,lifeMilliSecondPeriod);
+		collecTimer.schedule(collection_content, 10000,lifeMilliSecondPeriod);	
 
-		int count = 0; //반복 횟수
+	}
+
+	TimerTask makeFile_content = new TimerTask(){
+
 		@Override
 		public void run() {
-			
-			if(count<5){
-				
-				System.out.println("타이머가 나를 실행 시켰다"+count);
-				logger.txtWriterLogger("타이머가 실행 되었다."+count);
-				collecteData();
-				count++;
+			if(countA != lifetime){
+				countA++;
+				logger.txtWriterLogger(countA+" 회차 - 파일을 만든다.");
+				mkComandNfile();
 			}else{
-				System.out.println("타이머가 나를 종료 시켰다");
-				autotimer.cancel();
+				this.cancel();
+				logger.txtWriterLogger("makeFile_content 타이머가 종료 되었다");
+			}
+		}
+	};
+
+	TimerTask collection_content = new TimerTask() {
+
+		@Override
+		public void run() {
+			if(countB != lifetime){
+				countB++;
+				logger.txtWriterLogger(countB+" 회차 - data를 수집한다.");
+				collectedData(countB);
+			}else{
+				this.cancel();
+				logger.txtWriterLogger("collection_content 타이머가 종료 되었다");
 			}
 		}
 	};
 	
-	public void runTimer(){
-		
-//		autotimer.schedule(autotimer_content, 3000);
-//		autotimer.schedule(autotimer_content, 2000, 3000);
-		autotimer.schedule(autotimer_content, 3000);
-//		autotimer.schedule(autotimer_content, 3000);
-	}
 	
 	public void mkComandNfile(){
 		String stringCommand ;
 		
 		try {
 			
-			getIPlist();
-
 			//명령어를 만든다. ex) ipscan_221-bawday.exe -h -f:csv 110.15.192.130 110.15.192.180 saveLog/스타.txt
-			System.out.println(userName_list.keySet().size());
 			for (int indexNum = 1; indexNum < userName_list.keySet().size()+1; indexNum++) {
 
 				StringBuilder command = new StringBuilder();
@@ -97,7 +112,7 @@ public class AutoTimer {
 //				System.out.println(line);
 //			}
 		} catch (Exception e) {
-			System.out.println("mkComand()의 오류 : "+e.getMessage());
+			logger.txtWriterLogger("mkComand()의 오류 : "+e.getMessage());
 			// TODO: handle exception
 		}
 	}
@@ -125,19 +140,20 @@ public class AutoTimer {
 			} 
 			
 		} catch (Exception e) {
-			System.out.println("getIPlist()의 오류 : "+e.getMessage());
+			logger.txtWriterLogger("getIPlist()의 오류 : "+e.getMessage());
 		}
 		
 	}
 	
-	public void collecteData(){
-		mkComandNfile();
+	public void collectedData(int eachCount){
 		SaveFileHandler saveFileHandler = new SaveFileHandler();
 		for (int j = 1; j < userName_list.keySet().size()+1; j++) {
 			
 			fileNm = userName_list.get(j)+".txt";
-			saveFileHandler.asSaveTheStatisticFile(coutnAlive(fileNm));
+			saveFileHandler.asSaveTheStatisticFile(eachCount, coutnAlive(fileNm), userName_list.get(j) );
 		}
+		
+		saveFileHandler.insertSpace();
 		
 	}
 	
@@ -168,7 +184,7 @@ public class AutoTimer {
 //			System.out.println("Alive PC 값 : "+(total - countDead));
 			
 		} catch (Exception e) {
-			System.out.println("coutnAlive()의 오류 : "+e.getMessage());
+			logger.txtWriterLogger("coutnAlive()의 오류 : "+e.getMessage());
 		}
 		return alive;
 	}

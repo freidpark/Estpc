@@ -1,40 +1,47 @@
 package com.estpcip;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.HashMap;
 
+import javax.swing.AbstractListModel;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
 import com.modelFrame.fileHandler.CallFileHandler;
 import com.modelFrame.fileHandler.ServiceStarter;
+import com.modelFrame.fileHandler.Set_properties;
 import com.modelFrame.loggerListener.LoggerListener;
 import com.modelFrame.loggerListener.WriterLogger;
-import javax.swing.border.TitledBorder;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class HomeDisplay {
 
@@ -180,11 +187,11 @@ public class HomeDisplay {
 					.addContainerGap()
 					.addGroup(gl_panel_mage.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_mage.createSequentialGroup()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 761, Short.MAX_VALUE)
-							.addGap(6))
+							.addComponent(panel_timer, GroupLayout.PREFERRED_SIZE, 516, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
 						.addGroup(gl_panel_mage.createSequentialGroup()
-							.addComponent(panel_timer, GroupLayout.PREFERRED_SIZE, 363, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(404, Short.MAX_VALUE))))
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 761, Short.MAX_VALUE)
+							.addGap(6))))
 		);
 		gl_panel_mage.setVerticalGroup(
 			gl_panel_mage.createParallelGroup(Alignment.LEADING)
@@ -198,107 +205,58 @@ public class HomeDisplay {
 		
 		JLabel lblNewLabel_2 = new JLabel("* 동작주기 설정 : ");
 		
-		JLabel label = new JLabel("* 동작모드 방식 : ");
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("자동");
-		buttonGroup.add(rdbtnNewRadioButton);
-		
-		JRadioButton radioButton = new JRadioButton("수동");
-		buttonGroup.add(radioButton);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"일", "1", "2", "3", "5", "6", "7"}));
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"시", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
-		
 		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"분", "00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"}));
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"분", "20", "30"}));
 		
-		JLabel lblNewLabel_3 = new JLabel("동안 /");
+		JLabel lblNewLabel_3 = new JLabel("하루 동안 ");
 		
-		JLabel label_1 = new JLabel("간격으로 작동");
+		JLabel label_1 = new JLabel("분 간격으로 집계 하도록 ");
 		
 		JButton btnNewButton = new JButton("설정저장");
 		
-		JLabel lblSd = new JLabel("- 자동모드는 프로그램 시작 시 작동");
+		JLabel lblSd = new JLabel("* 현재 설정은 ");
 		
 		JLabel lbl_timer_view = new JLabel("time_view");
 		GroupLayout gl_panel_timer = new GroupLayout(panel_timer);
 		gl_panel_timer.setHorizontalGroup(
-			gl_panel_timer.createParallelGroup(Alignment.LEADING)
+			gl_panel_timer.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_timer.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel_timer.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_timer.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_panel_timer.createSequentialGroup()
+								.addComponent(lblSd)
+								.addGap(273))
+							.addGroup(gl_panel_timer.createSequentialGroup()
+								.addComponent(lblNewLabel_2)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(lblNewLabel_3)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnNewButton)
+								.addGap(43)))
 						.addGroup(Alignment.TRAILING, gl_panel_timer.createSequentialGroup()
-							.addGroup(gl_panel_timer.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel_timer.createSequentialGroup()
-									.addGap(3)
-									.addComponent(label, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-									.addGap(5)
-									.addComponent(rdbtnNewRadioButton)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(radioButton, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel_timer.createSequentialGroup()
-									.addGap(2)
-									.addComponent(lblNewLabel_2)
-									.addGap(12)
-									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(9)
-									.addGroup(gl_panel_timer.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel_timer.createSequentialGroup()
-											.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addGap(7)
-											.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(label_1, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-											.addPreferredGap(ComponentPlacement.RELATED))
-										.addComponent(lblNewLabel_3))))
-							.addGap(12))
-						.addGroup(Alignment.TRAILING, gl_panel_timer.createSequentialGroup()
-							.addComponent(lblSd)
-							.addPreferredGap(ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-							.addComponent(btnNewButton)
-							.addContainerGap())
-						.addGroup(gl_panel_timer.createSequentialGroup()
 							.addComponent(lbl_timer_view)
-							.addContainerGap(282, Short.MAX_VALUE))))
+							.addGap(160))))
 		);
 		gl_panel_timer.setVerticalGroup(
 			gl_panel_timer.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_timer.createSequentialGroup()
-					.addGroup(gl_panel_timer.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_timer.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lbl_timer_view)
-							.addPreferredGap(ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-							.addGroup(gl_panel_timer.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(rdbtnNewRadioButton)
-								.addGroup(gl_panel_timer.createSequentialGroup()
-									.addComponent(label)
-									.addGap(3)))
-							.addGroup(gl_panel_timer.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel_timer.createSequentialGroup()
-									.addGap(7)
-									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel_timer.createSequentialGroup()
-									.addGap(11)
-									.addComponent(lblNewLabel_2))))
-						.addGroup(gl_panel_timer.createSequentialGroup()
-							.addGap(48)
-							.addComponent(radioButton)
-							.addGap(10)
-							.addComponent(lblNewLabel_3)))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addContainerGap()
+					.addComponent(lbl_timer_view)
+					.addGap(21)
+					.addComponent(lblSd)
+					.addGap(36)
 					.addGroup(gl_panel_timer.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_2)
+						.addComponent(lblNewLabel_3)
+						.addComponent(label_1)
 						.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_1))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_timer.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton)
-						.addComponent(lblSd))
-					.addGap(9))
+						.addComponent(btnNewButton))
+					.addContainerGap(54, Short.MAX_VALUE))
 		);
 		panel_timer.setLayout(gl_panel_timer);
 		
@@ -552,21 +510,137 @@ public class HomeDisplay {
 		tabbedPane.addTab("통계      ", null, panel_static, null);
 
 		JLabel lblNewLabel_1 = new JLabel("여기는 통계입니다.");
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		
+		JToggleButton tglbtnNewToggleButton = new JToggleButton("집계 시작");
+		
+		JButton btnNewButton_1 = new JButton("폴더열기");
+		
+		JButton btnNewButton_2 = new JButton("새로고침");
+		JList list = new JList();
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				list.setModel(new AbstractListModel() {
+					
+					private FileReader fr;
+					private BufferedReader br;
+					private StringBuilder stringBuilder = new StringBuilder();
+					
+					public void fileCheck(){
+						File file = new File(Set_properties.getData_path(),Set_properties.getData_file());
+
+						try {
+							if (!file.exists()) {
+								JOptionPane.showMessageDialog(null, "파일이 존재 하지 않습니다.");
+							}
+							fr = new FileReader(file);
+							br = new BufferedReader(fr);
+							;
+							stringBuilder.append("\"");
+							stringBuilder.append(br.readLine());
+							stringBuilder.append("\"");
+							for (int i = 0 ; br.ready() ; i++) {
+								stringBuilder.append(",\"");
+								stringBuilder.append(br.readLine());
+								stringBuilder.append("\"");
+							}
+
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+
+					String[] values = new String[]{stringBuilder.toString()};
+					
+					public int getSize() {
+						return values.length;
+					}
+					public Object getElementAt(int index) {
+						return values[index];
+					}
+				});
+			}
+		});
 		GroupLayout gl_panel_static = new GroupLayout(panel_static);
 		gl_panel_static.setHorizontalGroup(
-				gl_panel_static.createParallelGroup(Alignment.LEADING)
+			gl_panel_static.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_static.createSequentialGroup()
-						.addGap(60)
-						.addComponent(lblNewLabel_1)
-						.addContainerGap(662, Short.MAX_VALUE))
-				);
+					.addGap(51)
+					.addGroup(gl_panel_static.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+						.addGroup(gl_panel_static.createSequentialGroup()
+							.addComponent(lblNewLabel_1)
+							.addGap(18)
+							.addComponent(tglbtnNewToggleButton)
+							.addGap(45)
+							.addComponent(btnNewButton_2)
+							.addPreferredGap(ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+							.addComponent(btnNewButton_1)
+							.addGap(188)))
+					.addGap(36))
+		);
 		gl_panel_static.setVerticalGroup(
-				gl_panel_static.createParallelGroup(Alignment.LEADING)
+			gl_panel_static.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_static.createSequentialGroup()
-						.addGap(83)
-						.addComponent(lblNewLabel_1)
-						.addContainerGap(414, Short.MAX_VALUE))
-				);
+					.addContainerGap(33, Short.MAX_VALUE)
+					.addGroup(gl_panel_static.createParallelGroup(Alignment.TRAILING, false)
+						.addGroup(gl_panel_static.createSequentialGroup()
+							.addComponent(lblNewLabel_1)
+							.addGap(18))
+						.addGroup(gl_panel_static.createSequentialGroup()
+							.addGroup(gl_panel_static.createParallelGroup(Alignment.BASELINE)
+								.addComponent(tglbtnNewToggleButton)
+								.addComponent(btnNewButton_1)
+								.addComponent(btnNewButton_2))
+							.addGap(27)))
+					.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+					.addGap(18))
+		);
+		
+		
+		list.setModel(new AbstractListModel() {
+			
+			private FileReader fr;
+			private BufferedReader br;
+			private StringBuilder stringBuilder = new StringBuilder();
+			
+			public void fileCheck(){
+				File file = new File(Set_properties.getData_path(),Set_properties.getData_file());
+
+				try {
+					if (!file.exists()) {
+						JOptionPane.showMessageDialog(null, "파일이 존재 하지 않습니다.");
+					}
+					fr = new FileReader(file);
+					br = new BufferedReader(fr);
+					;
+					stringBuilder.append("\"");
+					stringBuilder.append(br.readLine());
+					stringBuilder.append("\"");
+					for (int i = 0 ; br.ready() ; i++) {
+						stringBuilder.append(",\"");
+						stringBuilder.append(br.readLine());
+						stringBuilder.append("\"");
+					}
+
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			String[] values = new String[]{stringBuilder.toString()};
+			
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		scrollPane_1.setViewportView(list);
 		panel_static.setLayout(gl_panel_static);
 
 	}

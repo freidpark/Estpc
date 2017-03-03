@@ -39,6 +39,7 @@ public class Set_properties  {
 		getProperty_SystemInfo();
 		callGetSetProperty_Info();
 		LoggerListener loginfo = new WriterLogger();
+		loginfo.txtWriterLogger(" ");
 		loginfo.txtWriterLogger(" == #### Programming is loading to start... ####");
 		loginfo.txtWriterLogger(" == ## Step01 : Getting System-properties ...");
 		loginfo.txtWriterLogger(" == ## Step02 : Properties have been loaded...");
