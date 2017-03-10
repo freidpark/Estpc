@@ -111,3 +111,405 @@
 [2017.3.3] [18:18:41 768]  == ## Step01 : Getting System-properties ...
 [2017.3.3] [18:18:41 769]  == ## Step02 : Properties have been loaded...
 [2017.3.3] [18:18:41 769] == ## Step03 : Programming START !!!
+[2017.3.9] [10:13:27 183]  
+[2017.3.9] [10:13:27 245]  == #### Programming is loading to start... ####
+[2017.3.9] [10:13:27 245]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [10:13:27 246]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [10:13:27 246] == ## Step03 : Programming START !!!
+[2017.3.9] [10:29:44 428]  
+[2017.3.9] [10:29:46 144]  == #### Programming is loading to start... ####
+[2017.3.9] [10:29:46 145]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [10:29:46 145]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [10:29:46 146] == ## Step03 : Programming START !!!
+[2017.3.9] [10:32:2 290]  
+[2017.3.9] [10:32:2 299]  == #### Programming is loading to start... ####
+[2017.3.9] [10:32:2 300]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [10:32:2 300]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [10:32:2 300] == ## Step03 : Programming START !!!
+[2017.3.9] [11:31:49 97]  
+[2017.3.9] [11:31:49 155]  == #### Programming is loading to start... ####
+[2017.3.9] [11:31:49 156]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [11:31:49 157]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [11:31:49 157] == ## Step03 : Programming START !!!
+[2017.3.9] [11:32:50 225] HomeDisplay_panelMageHandler의 setTimerPeriod() 오류는 : C:\Users\freid\git\Estpc\EstpcTools\properties\estpc_.log (지정된 파일을 찾을 수 없습니다)
+[2017.3.9] [12:24:19 458] HomeDisplay_panelMageHandler의 setTimerPeriod() 오류는 : C:\Users\freid\git\Estpc\EstpcTools\properties\estpc_.log (지정된 파일을 찾을 수 없습니다)
+[2017.3.9] [12:24:52 21]  
+[2017.3.9] [12:24:52 56]  == #### Programming is loading to start... ####
+[2017.3.9] [12:24:52 57]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [12:24:52 57]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [12:24:52 57] == ## Step03 : Programming START !!!
+[2017.3.9] [12:25:12 279] HomeDisplay_panelMageHandler의 setTimerPeriod() 오류는 : C:\Users\freid\git\Estpc\EstpcTools\properties\estpc_.log (지정된 파일을 찾을 수 없습니다)
+[2017.3.9] [12:46:16 534]  
+[2017.3.9] [12:46:16 544]  == #### Programming is loading to start... ####
+[2017.3.9] [12:46:16 544]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [12:46:16 544]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [12:46:16 545] == ## Step03 : Programming START !!!
+[2017.3.9] [12:46:36 576] HomeDisplay_panelMageHandler의 setTimerPeriod() 오류는 : C:\Users\freid\git\Estpc\EstpcTools\properties\estpc_.log (지정된 파일을 찾을 수 없습니다)
+[2017.3.9] [12:47:1 362] HomeDisplay_panelMageHandler의 setTimerPeriod() 오류는 : C:\Users\freid\git\Estpc\EstpcTools\properties\estpc_.log (지정된 파일을 찾을 수 없습니다)
+[2017.3.9] [12:47:30 462]  
+[2017.3.9] [12:47:30 470]  == #### Programming is loading to start... ####
+[2017.3.9] [12:47:30 470]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [12:47:30 471]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [12:47:30 471] == ## Step03 : Programming START !!!
+[2017.3.9] [12:47:44 933] HomeDisplay_panelMageHandler의 setTimerPeriod() 오류는 : C:\Users\freid\git\Estpc\EstpcTools\properties\estpc_.log (지정된 파일을 찾을 수 없습니다)
+[2017.3.9] [12:47:59 687]  
+[2017.3.9] [12:47:59 811]  == #### Programming is loading to start... ####
+[2017.3.9] [12:47:59 813]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [12:47:59 814]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [12:47:59 815] == ## Step03 : Programming START !!!
+[2017.3.9] [12:53:52 240]  
+[2017.3.9] [12:53:52 249]  == #### Programming is loading to start... ####
+[2017.3.9] [12:53:52 250]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [12:53:52 250]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [12:53:52 250] == ## Step03 : Programming START !!!
+[2017.3.9] [12:54:4 303] HomeDisplay_panelMageHandler의 setTimerPeriod() 오류는 : C:\Users\freid\git\Estpc\EstpcTools\properties\estpc_properties.log (지정된 파일을 찾을 수 없습니다)
+[2017.3.9] [12:54:51 669]  
+[2017.3.9] [12:54:51 678]  == #### Programming is loading to start... ####
+[2017.3.9] [12:54:51 679]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [12:54:51 679]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [12:54:51 679] == ## Step03 : Programming START !!!
+[2017.3.9] [12:54:59 428] estpc_porperties.xml의 timer_period 값을 48로 설정
+[2017.3.9] [12:59:46 41]  
+[2017.3.9] [12:59:46 50]  == #### Programming is loading to start... ####
+[2017.3.9] [12:59:46 50]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [12:59:46 50]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [12:59:46 50] == ## Step03 : Programming START !!!
+[2017.3.9] [12:59:53 429] C:\Users\freid\git\Estpc\EstpcTools\properties
+[2017.3.9] [12:59:53 430] estpc_properties.xml
+[2017.3.9] [12:59:53 441] estpc_porperties.xml의 timer_period 값을 48로 설정
+[2017.3.9] [13:4:9 776]  
+[2017.3.9] [13:4:9 784]  == #### Programming is loading to start... ####
+[2017.3.9] [13:4:9 785]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [13:4:9 785]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [13:4:9 786] == ## Step03 : Programming START !!!
+[2017.3.9] [13:4:17 459] C:\Users\freid\git\Estpc\EstpcTools\properties
+[2017.3.9] [13:4:17 459] estpc_properties.xml
+[2017.3.9] [13:4:17 465] estpc_porperties.xml의 timer_period 값을 48로 설정
+[2017.3.9] [13:46:4 142]  
+[2017.3.9] [13:46:4 178]  == #### Programming is loading to start... ####
+[2017.3.9] [13:46:4 178]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [13:46:4 180]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [13:46:4 180] == ## Step03 : Programming START !!!
+[2017.3.9] [13:46:20 226] estpc_porperties.xml의 timer_period 값을 72로 설정
+[2017.3.9] [13:49:16 873]  
+[2017.3.9] [13:49:16 881]  == #### Programming is loading to start... ####
+[2017.3.9] [13:49:16 881]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [13:49:16 882]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [13:49:16 882] == ## Step03 : Programming START !!!
+[2017.3.9] [13:49:53 295]  
+[2017.3.9] [13:49:53 305]  == #### Programming is loading to start... ####
+[2017.3.9] [13:49:53 305]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [13:49:53 305]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [13:49:53 305] == ## Step03 : Programming START !!!
+[2017.3.9] [13:51:1 364]  
+[2017.3.9] [13:51:1 371]  == #### Programming is loading to start... ####
+[2017.3.9] [13:51:1 371]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [13:51:1 371]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [13:51:1 371] == ## Step03 : Programming START !!!
+[2017.3.9] [14:3:18 471]  
+[2017.3.9] [14:3:18 478]  == #### Programming is loading to start... ####
+[2017.3.9] [14:3:18 478]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [14:3:18 479]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [14:3:18 479] == ## Step03 : Programming START !!!
+[2017.3.9] [14:7:2 765]  
+[2017.3.9] [14:7:2 772]  == #### Programming is loading to start... ####
+[2017.3.9] [14:7:2 772]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [14:7:2 772]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [14:7:2 773] == ## Step03 : Programming START !!!
+[2017.3.9] [14:7:16 199] estpc_porperties.xml의 timer_period 값을 72로 설정
+[2017.3.9] [14:7:49 412] estpc_porperties.xml의 timer_period 값을 48로 설정
+[2017.3.9] [14:7:53 96] estpc_porperties.xml의 timer_period 값을 48로 설정
+[2017.3.9] [14:8:8 324] estpc_porperties.xml의 timer_period 값을 48로 설정
+[2017.3.9] [14:11:34 17]  
+[2017.3.9] [14:11:34 27]  == #### Programming is loading to start... ####
+[2017.3.9] [14:11:34 27]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [14:11:34 28]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [14:11:34 28] == ## Step03 : Programming START !!!
+[2017.3.9] [14:11:47 670] estpc_porperties.xml의 timer_period 값을 72로 설정
+[2017.3.9] [14:11:55 575] estpc_porperties.xml의 timer_period 값을 48로 설정
+[2017.3.9] [14:42:41 683]  
+[2017.3.9] [14:42:41 793]  == #### Programming is loading to start... ####
+[2017.3.9] [14:42:41 794]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [14:42:41 794]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [14:42:41 795] == ## Step03 : Programming START !!!
+[2017.3.9] [14:43:1 399] estpc_porperties.xml의 timer_period 값을 72로 설정
+[2017.3.9] [14:43:11 951] estpc_porperties.xml의 timer_period 값을 48로 설정
+[2017.3.9] [14:58:16 871]  
+[2017.3.9] [14:58:16 921]  == #### Programming is loading to start... ####
+[2017.3.9] [14:58:16 922]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [14:58:16 922]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [14:58:16 923] == ## Step03 : Programming START !!!
+[2017.3.9] [14:58:21 49] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [14:58:32 936] estpc_porperties.xml의 timer_period 값을 72로 설정
+[2017.3.9] [14:58:37 771] estpc_porperties.xml의 timer_period 값을 48로 설정
+[2017.3.9] [15:30:55 769]  
+[2017.3.9] [15:30:56 0]  == #### Programming is loading to start... ####
+[2017.3.9] [15:30:56 1]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [15:30:56 1]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [15:30:56 2] == ## Step03 : Programming START !!!
+[2017.3.9] [15:49:9 728]  
+[2017.3.9] [15:49:9 778]  == #### Programming is loading to start... ####
+[2017.3.9] [15:49:9 779]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [15:49:9 780]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [15:49:9 780] == ## Step03 : Programming START !!!
+[2017.3.9] [15:56:5 810]  
+[2017.3.9] [15:56:5 818]  == #### Programming is loading to start... ####
+[2017.3.9] [15:56:5 818]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [15:56:5 819]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [15:56:5 819] == ## Step03 : Programming START !!!
+[2017.3.9] [16:8:25 551]  
+[2017.3.9] [16:8:25 613]  == #### Programming is loading to start... ####
+[2017.3.9] [16:8:25 613]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [16:8:25 614]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [16:8:25 614] == ## Step03 : Programming START !!!
+[2017.3.9] [16:9:37 441]  
+[2017.3.9] [16:9:37 450]  == #### Programming is loading to start... ####
+[2017.3.9] [16:9:37 451]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [16:9:37 451]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [16:9:37 451] == ## Step03 : Programming START !!!
+[2017.3.9] [16:13:21 408]  
+[2017.3.9] [16:13:21 431]  == #### Programming is loading to start... ####
+[2017.3.9] [16:13:21 432]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [16:13:21 432]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [16:13:21 433] == ## Step03 : Programming START !!!
+[2017.3.9] [16:37:25 672]  
+[2017.3.9] [16:37:25 726]  == #### Programming is loading to start... ####
+[2017.3.9] [16:37:25 726]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [16:37:25 727]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [16:37:25 727] == ## Step03 : Programming START !!!
+[2017.3.9] [16:37:30 627] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:37:30 632] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [16:40:55 978]  
+[2017.3.9] [16:40:56 30]  == #### Programming is loading to start... ####
+[2017.3.9] [16:40:56 31]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [16:40:56 31]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [16:40:56 31] == ## Step03 : Programming START !!!
+[2017.3.9] [16:40:59 570] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:40:59 573] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [16:41:3 40] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:41:3 43] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [16:41:3 410] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:41:3 415] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [16:41:3 631] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:41:3 634] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [16:41:3 837] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:41:3 849] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [16:41:5 229] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:41:5 232] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [16:41:5 433] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:41:5 436] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [16:41:5 632] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:41:5 635] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [16:41:5 824] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:41:5 826] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [16:41:6 39] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:41:6 42] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [16:41:6 304] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:41:6 306] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [16:41:10 520] estpc_porperties.xml의 timer_period 값을 72로 설정
+[2017.3.9] [16:41:11 105] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:41:11 107] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.9] [16:41:11 551] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:41:11 554] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.9] [16:41:11 756] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:41:11 760] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.9] [16:41:11 958] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:41:11 960] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.9] [16:45:41 232]  
+[2017.3.9] [16:45:41 262]  == #### Programming is loading to start... ####
+[2017.3.9] [16:45:41 263]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [16:45:41 263]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [16:45:41 263] == ## Step03 : Programming START !!!
+[2017.3.9] [16:45:44 983] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:45:44 987] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.9] [16:45:55 121] estpc_porperties.xml의 timer_period 값을 72로 설정
+[2017.3.9] [16:46:0 844] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:46:0 850] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.9] [16:47:5 108]  
+[2017.3.9] [16:47:5 138]  == #### Programming is loading to start... ####
+[2017.3.9] [16:47:5 138]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [16:47:5 138]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [16:47:5 139] == ## Step03 : Programming START !!!
+[2017.3.9] [16:47:8 6] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:47:8 10] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.9] [16:57:58 745]  
+[2017.3.9] [16:57:58 803]  == #### Programming is loading to start... ####
+[2017.3.9] [16:57:58 804]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [16:57:58 804]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [16:57:58 805] == ## Step03 : Programming START !!!
+[2017.3.9] [16:58:3 424] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:58:3 760] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.9] [16:58:32 181] estpc_porperties.xml의 timer_period 값을 72로 설정
+[2017.3.9] [16:58:32 188] estpc_porperties.xml의 timer_between 값을 20로 설정
+[2017.3.9] [16:58:32 196] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:58:32 202] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.9] [16:58:38 743] estpc_porperties.xml의 timer_period 값을 48로 설정
+[2017.3.9] [16:58:38 750] estpc_porperties.xml의 timer_between 값을 30로 설정
+[2017.3.9] [16:58:38 756] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:58:38 759] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [16:58:44 240] estpc_porperties.xml의 timer_period 값을 72로 설정
+[2017.3.9] [16:58:44 244] estpc_porperties.xml의 timer_between 값을 20로 설정
+[2017.3.9] [16:58:44 247] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [16:58:44 252] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.9] [17:1:41 627]  
+[2017.3.9] [17:1:41 662]  == #### Programming is loading to start... ####
+[2017.3.9] [17:1:41 662]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [17:1:41 663]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [17:1:41 663] == ## Step03 : Programming START !!!
+[2017.3.9] [17:1:44 727] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [17:1:44 733] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.9] [17:2:3 205] estpc_porperties.xml의 timer_between 값을 20로 설정
+[2017.3.9] [17:2:3 227] estpc_porperties.xml의 timer_period 값을 72로 설정
+[2017.3.9] [17:2:3 235] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 20
+[2017.3.9] [17:2:3 240] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.9] [17:2:10 112] estpc_porperties.xml의 timer_between 값을 30로 설정
+[2017.3.9] [17:2:10 116] estpc_porperties.xml의 timer_period 값을 48로 설정
+[2017.3.9] [17:2:10 120] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [17:2:10 124] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [17:26:27 189]  
+[2017.3.9] [17:26:27 249]  == #### Programming is loading to start... ####
+[2017.3.9] [17:26:27 249]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [17:26:27 249]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [17:26:27 250] == ## Step03 : Programming START !!!
+[2017.3.9] [17:26:33 888] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.9] [17:26:34 567] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.9] [17:26:42 910] estpc_porperties.xml의 timer_between 값을 20로 설정
+[2017.3.9] [17:26:42 922] estpc_porperties.xml의 timer_period 값을 72로 설정
+[2017.3.9] [17:26:42 997] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 20
+[2017.3.9] [17:26:43 0] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.9] [17:26:45 295] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 20
+[2017.3.9] [17:26:45 299] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.9] [17:26:55 991] 집계를 시작합니다. 설정값 : 20분/72회
+[2017.3.9] [17:26:56 1] 집계를 시작 합니다.
+[2017.3.9] [17:26:57 2] 1 회차 - 파일을 만든다.
+[2017.3.9] [17:26:57 229] cmd /c C:\\Users\\freid\\git\\Estpc\\EstpcTools\\app\\ipscan_221-bawday.exe -h -f:csv 110.15.193.130 110.15.193.230 C:\\Users\\freid\\git\\Estpc\\EstpcTools\\app\\saveFiles\\행복.txt
+[2017.3.9] [17:26:57 234] cmd /c C:\\Users\\freid\\git\\Estpc\\EstpcTools\\app\\ipscan_221-bawday.exe -h -f:csv 110.15.192.130 110.15.192.180 C:\\Users\\freid\\git\\Estpc\\EstpcTools\\app\\saveFiles\\스타.txt
+[2017.3.9] [17:27:6 2] 1 회차 - data를 수집한다.
+[2017.3.9] [17:27:6 7] 집계시작 9일 17시 27분
+[2017.3.9] [17:29:3 767] 집계를 수동으로 중지 했습니다.
+[2017.3.9] [17:40:33 443]  
+[2017.3.9] [17:40:33 520]  == #### Programming is loading to start... ####
+[2017.3.9] [17:40:33 520]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [17:40:33 521]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [17:40:33 521] You are running 'console-mode start
+[2017.3.9] [17:40:33 593] stared
+[2017.3.9] [17:42:31 576]  
+[2017.3.9] [17:42:33 16]  == #### Programming is loading to start... ####
+[2017.3.9] [17:42:33 17]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [17:42:33 18]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [17:42:33 18] You are running 'console-mode start
+[2017.3.9] [17:42:33 29] stared
+[2017.3.9] [18:10:51 300]  
+[2017.3.9] [18:10:51 364]  == #### Programming is loading to start... ####
+[2017.3.9] [18:10:51 364]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [18:10:51 365]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [18:10:51 365] == ## Step03 : Programming START !!!
+[2017.3.9] [18:12:21 573]  
+[2017.3.9] [18:12:21 584]  == #### Programming is loading to start... ####
+[2017.3.9] [18:12:21 584]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [18:12:21 585]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [18:12:21 585] == ## Step03 : Programming START !!!
+[2017.3.9] [18:16:17 526]  
+[2017.3.9] [18:16:17 537]  == #### Programming is loading to start... ####
+[2017.3.9] [18:16:17 537]  == ## Step01 : Getting System-properties ...
+[2017.3.9] [18:16:17 538]  == ## Step02 : Properties have been loaded...
+[2017.3.9] [18:16:17 538] == ## Step03 : Programming START !!!
+[2017.3.10] [14:0:37 661]  
+[2017.3.10] [14:0:37 733]  == #### Programming is loading to start... ####
+[2017.3.10] [14:0:37 734]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [14:0:37 734]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [14:0:37 735] You are running 'console-mode start
+[2017.3.10] [14:0:37 743] stared
+[2017.3.10] [14:0:51 396]  
+[2017.3.10] [14:0:51 410]  == #### Programming is loading to start... ####
+[2017.3.10] [14:0:51 410]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [14:0:51 411]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [14:0:51 411] You are running 'console-mode start
+[2017.3.10] [14:0:51 415] stared
+[2017.3.10] [14:6:25 97]  
+[2017.3.10] [14:6:25 175]  == #### Programming is loading to start... ####
+[2017.3.10] [14:6:25 176]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [14:6:25 177]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [14:6:25 177] You are running 'console-mode start
+[2017.3.10] [14:6:25 182] stared
+[2017.3.10] [14:8:4 881]  
+[2017.3.10] [14:8:4 899]  == #### Programming is loading to start... ####
+[2017.3.10] [14:8:4 899]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [14:8:4 900]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [14:8:4 900] You are running 'console-mode start
+[2017.3.10] [14:8:4 906] stared
+[2017.3.10] [14:15:21 141]  
+[2017.3.10] [14:15:21 180]  == #### Programming is loading to start... ####
+[2017.3.10] [14:15:21 180]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [14:15:21 181]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [14:15:21 181] == ## Step03 : Programming START !!!
+[2017.3.10] [14:35:57 388]  
+[2017.3.10] [14:35:57 423]  == #### Programming is loading to start... ####
+[2017.3.10] [14:35:57 423]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [14:35:57 423]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [14:35:57 424] == ## Step03 : Programming START !!!
+[2017.3.10] [14:42:45 989]  
+[2017.3.10] [14:42:46 32]  == #### Programming is loading to start... ####
+[2017.3.10] [14:42:46 32]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [14:42:46 32]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [14:42:46 33] == ## Step03 : Programming START !!!
+[2017.3.10] [14:42:51 114] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 20
+[2017.3.10] [14:42:51 121] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 72
+[2017.3.10] [14:42:59 295] estpc_porperties.xml의 timer_between 값을 30로 설정
+[2017.3.10] [14:42:59 302] estpc_porperties.xml의 timer_period 값을 48로 설정
+[2017.3.10] [14:42:59 314] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.10] [14:42:59 323] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.10] [14:43:0 645] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.10] [14:43:0 648] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.10] [14:45:44 227]  
+[2017.3.10] [14:45:44 263]  == #### Programming is loading to start... ####
+[2017.3.10] [14:45:44 263]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [14:45:44 264]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [14:45:44 264] == ## Step03 : Programming START !!!
+[2017.3.10] [14:52:27 281]  
+[2017.3.10] [14:52:27 294]  == #### Programming is loading to start... ####
+[2017.3.10] [14:52:27 294]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [14:52:27 294]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [14:52:27 295] == ## Step03 : Programming START !!!
+[2017.3.10] [14:53:41 883]  
+[2017.3.10] [14:53:41 893]  == #### Programming is loading to start... ####
+[2017.3.10] [14:53:41 893]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [14:53:41 893]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [14:53:41 894] == ## Step03 : Programming START !!!
+[2017.3.10] [15:3:24 757]  
+[2017.3.10] [15:3:24 798]  == #### Programming is loading to start... ####
+[2017.3.10] [15:3:24 799]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [15:3:24 799]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [15:3:24 800] == ## Step03 : Programming START !!!
+[2017.3.10] [15:4:46 322]  
+[2017.3.10] [15:4:46 333]  == #### Programming is loading to start... ####
+[2017.3.10] [15:4:46 334]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [15:4:46 335]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [15:4:46 335] == ## Step03 : Programming START !!!
+[2017.3.10] [15:5:23 376]  
+[2017.3.10] [15:5:23 384]  == #### Programming is loading to start... ####
+[2017.3.10] [15:5:23 384]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [15:5:23 384]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [15:5:23 385] == ## Step03 : Programming START !!!
+[2017.3.10] [15:6:19 596]  
+[2017.3.10] [15:6:19 609]  == #### Programming is loading to start... ####
+[2017.3.10] [15:6:19 609]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [15:6:19 610]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [15:6:19 610] == ## Step03 : Programming START !!!
+[2017.3.10] [15:10:8 489]  
+[2017.3.10] [15:10:8 498]  == #### Programming is loading to start... ####
+[2017.3.10] [15:10:8 498]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [15:10:8 498]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [15:10:8 499] == ## Step03 : Programming START !!!
+[2017.3.10] [15:11:40 643]  
+[2017.3.10] [15:11:40 652]  == #### Programming is loading to start... ####
+[2017.3.10] [15:11:40 653]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [15:11:40 653]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [15:11:40 653] == ## Step03 : Programming START !!!
+[2017.3.10] [15:12:16 782] estpc_porperties.xml의 getTimerBetween 값을 죄회한다 - 값 : 30
+[2017.3.10] [15:12:16 801] estpc_porperties.xml의 timer_period 값을 죄회한다 - 값 : 48
+[2017.3.10] [15:13:0 780]  
+[2017.3.10] [15:13:0 790]  == #### Programming is loading to start... ####
+[2017.3.10] [15:13:0 792]  == ## Step01 : Getting System-properties ...
+[2017.3.10] [15:13:0 792]  == ## Step02 : Properties have been loaded...
+[2017.3.10] [15:13:0 793] == ## Step03 : Programming START !!!

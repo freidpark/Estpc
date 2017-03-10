@@ -36,11 +36,20 @@ public class AutoTimer {
 	int lifeMilliSecondPeriod =  lifeSecond*1000;//반복 간격시간
 	
 	
-	public void runTimer(){
+	public void runTimer(int lifetime , int lifeMinute){
 		getIPlist();
+		this.lifetime = lifetime;
+		this.lifeMinute = lifeMinute;
+		logger.txtWriterLogger("집계를 시작 합니다.");
 		mkTimer.schedule(makeFile_content, 1000,lifeMilliSecondPeriod);
 		collecTimer.schedule(collection_content, 10000,lifeMilliSecondPeriod);	
 
+	}
+	
+	public void stopTimer(){
+		mkTimer.cancel();
+		collecTimer.cancel();
+		logger.txtWriterLogger("집계를 수동으로 중지 했습니다.");
 	}
 
 	TimerTask makeFile_content = new TimerTask(){

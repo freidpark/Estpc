@@ -2,6 +2,7 @@ package com.modelFrame.loggerListener;
 
 
 import com.modelFrame.fileHandler.CallFileHandler;
+import com.modelFrame.fileHandler.HomeDisplay_panelMageHandler;
 import com.modelFrame.fileHandler.SaveFileHandler;
 import com.modelFrame.fileHandler.ServiceStarter;
 import com.modelFrame.timerTool.AutoTimer;
@@ -23,11 +24,16 @@ public class TestMain {
 		
 //		loginfo.txtWriterLogger("timer start");
 //		
-		AutoTimer autotimer = new AutoTimer();
-		autotimer.runTimer();//완료
+//		AutoTimer autotimer = new AutoTimer();
+//		autotimer.runTimer(3,20);//완료
+//		autotimer.runTimer(72,20);//완료
+//		autotimer.runTimer(48,30);//완료
 //		SaveFileHandler saveFileHandler = new SaveFileHandler();
 //		autotimer.mkComand();//완료
 //		saveFileHandler.asSaveFile();//완료
+		
+		HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
+		homeDisplay_panelMageHandler.callFileListCheck();
 		
 		
 		

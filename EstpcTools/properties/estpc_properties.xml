@@ -1,6 +1,11 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <ui-query-mapping>
     <!-- Query Set in cbpark_projects -->
+    <requestInfo id="base_properties" type="SQ">
+        <attribute alias="" type="STRING" value="기본 설정 파일  경로"/>
+        <properties_path>C:\Users\freid\git\Estpc\EstpcTools\properties</properties_path>
+        <properties_file>estpc_properties.xml</properties_file>
+    </requestInfo>
     <requestInfo id="log_info" type="SQ">
         <attribute alias="" type="STRING" value="로그경로"/>
         <log_path>C:\Users\freid\git\Estpc\EstpcTools\log</log_path>
@@ -20,6 +25,11 @@
             <attribute alias="" type="STRING" value="로그경로"/>
             <data_path>C:\Users\freid\git\Estpc\EstpcTools\data</data_path>
             <data_file>statistic.txt</data_file>
+        </requestInfo>
+        <requestInfo id="timer_info" type="SQ">
+            <attribute alias="" type="STRING" value="타이머설정"/>
+            <timer_between>30</timer_between>
+            <timer_period>48</timer_period>
         </requestInfo>
     </requestInfo>
     <requestInfo id="system_info">

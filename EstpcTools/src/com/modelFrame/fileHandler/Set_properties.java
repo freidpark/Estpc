@@ -19,6 +19,9 @@ import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
 public class Set_properties  {
 	
+	
+	private static String properties_path;
+	private static String properties_file;
 	private static String log_path;
 	private static String log_file;
 	private static String userStore_path;
@@ -28,10 +31,11 @@ public class Set_properties  {
 	private static String app_file;
 	private static String data_path;
 	private static String data_file;
+	private static String timer_period;
 	
 
 	private static String current_path;
-	private static File estpc_propertiese;
+	private static File estpc_properties;
 
 	
 	public static void start() {
@@ -49,7 +53,7 @@ public class Set_properties  {
 	private static void getProperty_SystemInfo(){
 
 		current_path = System.getProperty("user.dir");
-		estpc_propertiese = new File(current_path+"\\properties", "estpc_properties.xml");
+		estpc_properties = new File(current_path+"\\properties", "estpc_properties.xml");
 
 		String jVersion = System.getProperty("java.version"); 
 		String jVendor = System.getProperty("java.vendor"); 
@@ -69,7 +73,7 @@ public class Set_properties  {
 			HashMap<Integer, String> hashMap = new HashMap<Integer,String>();
 			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-			Document document = documentBuilder.parse(estpc_propertiese);
+			Document document = documentBuilder.parse(estpc_properties);
 			NodeList nodelist_requestInfo = document.getElementsByTagName("requestInfo");
 			
 			boolean doOrNot = false ; // system_info xml정보를 수정할지 삽입할지 결정
@@ -154,13 +158,14 @@ public class Set_properties  {
 			}
 			
 			//파일 경로 업데이트
+			document.getElementsByTagName("properties_path").item(0).setTextContent(current_path+"\\properties");
 			document.getElementsByTagName("log_path").item(0).setTextContent(current_path+"\\log");
 			document.getElementsByTagName("userStore_path").item(0).setTextContent(current_path+"\\properties");
 			document.getElementsByTagName("app_path").item(0).setTextContent(current_path+"\\app");
 			document.getElementsByTagName("appSaveFiles_path").item(0).setTextContent(current_path+"\\app\\saveFiles");
 			document.getElementsByTagName("data_path").item(0).setTextContent(current_path+"\\data");
 			
-			FileOutputStream fos = new FileOutputStream(estpc_propertiese);
+			FileOutputStream fos = new FileOutputStream(estpc_properties);
 			OutputFormat outputFormat = new OutputFormat(document);
 			outputFormat.setIndenting(true);
 
@@ -168,7 +173,6 @@ public class Set_properties  {
 			xmlSerializer.serialize(document);
 
 			fos.close();
-
 
 		} catch (Exception e) {
 			System.out.println("getProperty_SystemInfo()의 에러: "+e.getMessage());
@@ -186,7 +190,7 @@ public class Set_properties  {
 
 			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-			Document document = documentBuilder.parse(estpc_propertiese);
+			Document document = documentBuilder.parse(estpc_properties);
 
 			NodeList node_requestInfo = document.getElementsByTagName("requestInfo");
 
@@ -196,6 +200,12 @@ public class Set_properties  {
 				requestInfo_id = element_requestInfo.getAttribute("id");
 
 				switch (requestInfo_id) {
+				
+				case "base_properties":
+					properties_path = element_requestInfo.getElementsByTagName("properties_path").item(0).getTextContent();
+					properties_file = element_requestInfo.getElementsByTagName("properties_file").item(0).getTextContent();
+					break;
+				
 				case "log_info":
 					log_path = element_requestInfo.getElementsByTagName("log_path").item(0).getTextContent();
 					log_file = element_requestInfo.getElementsByTagName("log_file").item(0).getTextContent();
@@ -215,6 +225,10 @@ public class Set_properties  {
 				case "data_info":
 					data_path = element_requestInfo.getElementsByTagName("data_path").item(0).getTextContent();
 					data_file = element_requestInfo.getElementsByTagName("data_file").item(0).getTextContent();
+					break;
+					
+				case "timer_info":
+					timer_period = element_requestInfo.getElementsByTagName("timer_period").item(0).getTextContent();
 					break;
 				}
 			}
@@ -262,6 +276,27 @@ public class Set_properties  {
 		return data_file;
 	}
 
+	public static String getProperties_path() {
+		return properties_path;
+	}
+
+	public static String getProperties_file() {
+		return properties_file;
+	}
+
+	public static String getTime_period() {
+		return timer_period;
+	}
+
+	//	public static void setTime_period(String time_period) {
+	//		Set_properties.time_period = time_period;
+	//	}
+	//	public static void setProperties_path(String properties_path) {
+	//		Set_properties.properties_path = properties_path;
+	//	}
+	//	public static void setProperties_file(String properties_file) {
+	//		Set_properties.properties_file = properties_file;
+	//	}
 	//	public static void setAppSaveFiles_path(String appSaveFiles_path) {
 	//		Set_properties.appSaveFiles_path = appSaveFiles_path;
 	//	}

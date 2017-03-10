@@ -151,7 +151,7 @@ public class SaveFileHandler {
 			fw = new FileWriter(file, true);
 		    bw = new BufferedWriter(fw);
 			pw = new PrintWriter(bw);
-			pw.println(currentDate+"일 "+currentHour+":"+currentMinute+"   "+count+"회차 컴퓨터ON : "+alive+" "+userName);
+			pw.println(currentDate+"일 "+currentHour+":"+currentMinute+"   "+count+"회차   PC_ON : "+alive+"  -   "+userName);
 			pw.close();
 			
 		} catch (Exception e) {
@@ -170,6 +170,7 @@ public class SaveFileHandler {
 			fw = new FileWriter(file, true);
 			bw = new BufferedWriter(fw);
 			pw = new PrintWriter(bw);
+			pw.println(" ");
 			pw.println(" ");
 			pw.close();
 
