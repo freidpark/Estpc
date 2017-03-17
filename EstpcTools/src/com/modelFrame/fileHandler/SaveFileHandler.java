@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import com.modelFrame.loggerListener.LoggerListener;
 import com.modelFrame.loggerListener.WriterLogger;
@@ -224,4 +225,56 @@ public class SaveFileHandler {
 		loginfo.txtWriterLogger("집계시작 "+currentDate+"일 "+currentHour+"시 "+currentMinute+"분");
 	}
 
+	public void autoDeleted(int fileQuantity){
+		try {
+
+			File file = new File(Set_properties.getData_path());
+			String[] fileList = file.list();
+
+			int b;
+			int[] reFileList = new int[fileList.length];
+			//날짜별만 잘라서 배열로 다시 정의
+			for (int i = 0; i < fileList.length; i++) {
+
+				String[] aa = fileList[i].split("_");
+
+				String a = aa[1];
+				b = Integer.parseInt(a.substring(0, 8));
+				reFileList[i] = b;
+			}
+
+			//버블정렬
+			int tmp = 0 ;
+			for (int i = fileList.length; i > 1; i--) {
+				for (int j = 1; j < i; j++) {
+					if (reFileList[j-1]>reFileList[j]){
+						tmp = reFileList[j-1];
+						reFileList[j-1] = reFileList[j];
+						reFileList[j] =tmp;
+					}
+				}
+			}
+//			양수라면 지우기 수행
+			if (reFileList.length-fileQuantity>0) {
+				
+				for (int i = 0; i < reFileList.length-fileQuantity; i++) {
+					
+					String openCommand = "cmd /c del "+Set_properties.getData_path()+"\\statistic_"+reFileList[i]+".txt";
+					
+					Runtime.getRuntime().exec(openCommand);				
+					loginfo.txtWriterLogger(openCommand+" 명령어 실행됨");
+				}
+			}
+			
+
+		} catch (Exception e) {
+			loginfo.txtWriterLogger(e.getMessage());
+		}
+
+	}
+	
+	public void selectDelet(){
+		
+	}
+	
 }

@@ -9,7 +9,7 @@
     <requestInfo id="log_info" type="SQ">
         <attribute alias="" type="STRING" value="로그경로"/>
         <log_path>C:\Users\freid\git\Estpc\EstpcTools\log</log_path>
-        <log_file>estpc.log</log_file>
+        <log_file>estpc.txt</log_file>
     </requestInfo>
     <requestInfo id="userStore_info" type="SQ">
         <attribute alias="" type="STRING" value="사용자_경로"/>
@@ -25,6 +25,7 @@
             <attribute alias="" type="STRING" value="로그경로"/>
             <data_path>C:\Users\freid\git\Estpc\EstpcTools\data</data_path>
             <data_file>statistic.txt</data_file>
+            <data_quantity>5</data_quantity>
         </requestInfo>
         <requestInfo id="timer_info" type="SQ">
             <attribute alias="" type="STRING" value="타이머설정"/>

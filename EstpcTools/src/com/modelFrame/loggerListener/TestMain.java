@@ -28,13 +28,14 @@ public class TestMain {
 //		autotimer.runTimer(3,20);//완료
 //		autotimer.runTimer(72,20);//완료
 //		autotimer.runTimer(48,30);//완료
-//		SaveFileHandler saveFileHandler = new SaveFileHandler();
+		SaveFileHandler saveFileHandler = new SaveFileHandler();
 //		autotimer.mkComand();//완료
 //		saveFileHandler.asSaveFile();//완료
 		
-		HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
-		homeDisplay_panelMageHandler.callFileListCheck();
 		
+		
+//		HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
+//		homeDisplay_panelMageHandler.callFileListCheck();
 		
 		
 //		Process cmdPorcess = Runtime.getRuntime().exec("cmd C:/Users/freid/Desktop/Ipscan/saveLog dir");

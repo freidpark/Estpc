@@ -41,8 +41,8 @@ public class AutoTimer {
 		this.lifetime = lifetime;
 		this.lifeMinute = lifeMinute;
 		logger.txtWriterLogger("집계를 시작 합니다.");
-		mkTimer.schedule(makeFile_content, 1000,lifeMilliSecondPeriod);
-		collecTimer.schedule(collection_content, 10000,lifeMilliSecondPeriod);	
+		mkTimer.schedule(makeFile_content, 2500,lifeMilliSecondPeriod);
+		collecTimer.schedule(collection_content, 25000,lifeMilliSecondPeriod);	
 
 	}
 	
@@ -98,8 +98,10 @@ public class AutoTimer {
 				command.append(Set_properties.getApp_file());
 				command.append(" -h -f:csv ");
 				command.append(sIP_list.get(indexNum));
+//				command.append("221.141.125.1");
 				command.append(" ");
 				command.append(eIP_list.get(indexNum));
+//				command.append("221.141.125.255");
 				command.append(" ");
 				command.append(Set_properties.getAppSaveFiles_path());
 				command.append("\\");
@@ -181,17 +183,19 @@ public class AutoTimer {
 			while(br.ready()){
 				line=br.readLine();
 				lineArrary = line.split(",");
-				if(lineArrary[1].equalsIgnoreCase("Dead")){
-					countDead++;
+				if(!lineArrary[1].equalsIgnoreCase("Dead")){
+//					countDead++;
+					alive++;
 				};
 				total++;
 //				System.out.println(line);
 //				System.out.println("countDead 값 : "+countDead);
 //				System.out.println("total 값 : "+total);
 			}
-			alive = (total - countDead);
+//			alive = (total - countDead);
 //			System.out.println("Alive PC 값 : "+(total - countDead));
-			
+			logger.txtWriterLogger("coutnAlive()값은 : "+alive);
+
 		} catch (Exception e) {
 			logger.txtWriterLogger("coutnAlive()의 오류 : "+e.getMessage());
 		}

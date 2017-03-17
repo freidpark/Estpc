@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -40,10 +38,13 @@ import javax.swing.table.DefaultTableModel;
 
 import com.modelFrame.fileHandler.CallFileHandler;
 import com.modelFrame.fileHandler.HomeDisplay_panelMageHandler;
+import com.modelFrame.fileHandler.SaveFileHandler;
 import com.modelFrame.fileHandler.ServiceStarter;
 import com.modelFrame.fileHandler.Set_properties;
 import com.modelFrame.loggerListener.LoggerListener;
 import com.modelFrame.loggerListener.WriterLogger;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class HomeDisplay {
 
@@ -57,12 +58,17 @@ public class HomeDisplay {
 	private JTextField txt_eBclassIP;
 	private JTextField txt_eCclassIP;
 	private JTextField txt_eDclassIP;
-	private JTextField txt_searchWord;
-	private JTable table_userList;
+	private int collection_state = 0;
+	private int combo_chooseMinute_getSelectedIndex = 0;
 	private int timerPeriod;
 	private int timerBetween;
+	private int comboBox_quantity_getSelectedIndex = 0;
+	private int bakQuantity;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private String selectedFileName;
+	private String selectedFileName="";
+	private String selectedUserName=" ";
+	HashMap<Integer,String> listHashMap = new HashMap<Integer,String>();
+	LoggerListener loginfo = new WriterLogger();
 	
 	
 
@@ -92,8 +98,6 @@ public class HomeDisplay {
 
 		ServiceStarter ss = new ServiceStarter();
 		ss.serviceStarter();
-
-		LoggerListener loginfo = new WriterLogger();
 
 		loginfo.txtWriterLogger("== ## Step03 : Programming START !!!");
 
@@ -128,8 +132,7 @@ public class HomeDisplay {
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				UserManageFrame userManageFrame = new UserManageFrame();
-
+//				UserManageFrame userManageFrame = new UserManageFrame();
 			}
 		});
 
@@ -194,11 +197,11 @@ public class HomeDisplay {
 					.addContainerGap()
 					.addGroup(gl_panel_mage.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_mage.createSequentialGroup()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 761, Short.MAX_VALUE)
-							.addGap(6))
+							.addComponent(panel_timer, GroupLayout.PREFERRED_SIZE, 550, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
 						.addGroup(gl_panel_mage.createSequentialGroup()
-							.addComponent(panel_timer, GroupLayout.PREFERRED_SIZE, 529, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(238, Short.MAX_VALUE))))
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 761, Short.MAX_VALUE)
+							.addGap(6))))
 		);
 		gl_panel_mage.setVerticalGroup(
 			gl_panel_mage.createParallelGroup(Alignment.LEADING)
@@ -219,12 +222,14 @@ public class HomeDisplay {
 				switch (combo_chooseMinute.getSelectedIndex()) {
 				case 1 :
 					JOptionPane.showMessageDialog(null, "20분 설정은 하루동안 총 72번 자동 반복됩니다.");
+					combo_chooseMinute_getSelectedIndex = 1;
 					timerBetween = 20;
 					timerPeriod = 72;
 					break;
 
 				case 2:
 					JOptionPane.showMessageDialog(null, "30분 설정은 하루동안 총 48번 자동 반복됩니다.");
+					combo_chooseMinute_getSelectedIndex = 2;
 					timerBetween = 30;
 					timerPeriod = 48;
 					break;
@@ -245,15 +250,21 @@ public class HomeDisplay {
 		btnSettingSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				int YorN  = JOptionPane.showConfirmDialog(null, "저장하시겠습니까?", "타이머 주기 저장", 0 );
-				
-				if (YorN == 0){
-					HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
-					homeDisplay_panelMageHandler.setTimerBetween(timerBetween);
-					homeDisplay_panelMageHandler.setTimerPeriod(timerPeriod);
+				if(combo_chooseMinute_getSelectedIndex == 0 ){
+					JOptionPane.showMessageDialog(null, "시간을 설정하세요.");
+				}else{
 					
-					lblveiw.setText("24시간 동안 /"+homeDisplay_panelMageHandler.getTimerBetween()+"분 간격 / 총"+homeDisplay_panelMageHandler.getTimerPeriod()+"회 집계");
+					int YorN  = JOptionPane.showConfirmDialog(null, "저장하시겠습니까?", "타이머 주기 저장", 0 );
+					
+					if (YorN == 0){
+						HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
+						homeDisplay_panelMageHandler.setTimerBetween(timerBetween);
+						homeDisplay_panelMageHandler.setTimerPeriod(timerPeriod);
+						
+						lblveiw.setText("24시간 동안 /"+homeDisplay_panelMageHandler.getTimerBetween()+"분 간격 / 총"+homeDisplay_panelMageHandler.getTimerPeriod()+"회 집계 / "+homeDisplay_panelMageHandler.getFileQuantity()+"개 파일 보존");
+					}
 				}
+				
 			}
 		});
 		
@@ -263,8 +274,80 @@ public class HomeDisplay {
 		btnSdsd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
-				lblveiw.setText("24시간 동안 /"+homeDisplay_panelMageHandler.getTimerBetween()+"분 간격 / 총"+homeDisplay_panelMageHandler.getTimerPeriod()+"회 집계");
+				lblveiw.setText("24시간 동안 /"+homeDisplay_panelMageHandler.getTimerBetween()+"분 간격 / 총"+homeDisplay_panelMageHandler.getTimerPeriod()+"회 집계 / "+homeDisplay_panelMageHandler.getFileQuantity()+"개 파일 보존");
 				
+			}
+		});
+		
+		JLabel lblNewLabel_5 = new JLabel("* 집계파일 저장 갯수 설정 : ");
+		
+		JComboBox comboBox_quantity = new JComboBox();
+		comboBox_quantity.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				switch (comboBox_quantity.getSelectedIndex()) {
+				case 1 :
+					JOptionPane.showMessageDialog(null, "최근 파일 1개만 자동 보존됩니다.");
+					comboBox_quantity_getSelectedIndex = 1 ;
+					bakQuantity = 1;
+					break;
+
+				case 2:
+					JOptionPane.showMessageDialog(null, "최근 파일 2개만 자동 보존됩니다.");
+					comboBox_quantity_getSelectedIndex = 2 ;
+					bakQuantity = 2;
+					break;
+				case 3:
+					JOptionPane.showMessageDialog(null, "최근 파일 3개만 자동 보존됩니다.");
+					comboBox_quantity_getSelectedIndex = 3 ;
+					bakQuantity = 3;
+					break;
+				case 4:
+					JOptionPane.showMessageDialog(null, "최근 파일 4개만 자동 보존됩니다.");
+					comboBox_quantity_getSelectedIndex = 4 ;
+					bakQuantity = 4;
+					break;
+				case 5:
+					JOptionPane.showMessageDialog(null, "최근 파일 5개만 자동 보존됩니다.");
+					comboBox_quantity_getSelectedIndex = 5 ;
+					bakQuantity = 5;
+					break;
+				case 6:
+					JOptionPane.showMessageDialog(null, "최근 파일 6개만 자동 보존됩니다.");
+					comboBox_quantity_getSelectedIndex = 6 ;
+					bakQuantity = 6;
+					break;
+				case 7:
+					JOptionPane.showMessageDialog(null, "최근 파일 7개만 자동 보존됩니다.");
+					comboBox_quantity_getSelectedIndex = 7 ;
+					bakQuantity = 7;
+					break;
+				}
+			}
+		});
+		comboBox_quantity.setModel(new DefaultComboBoxModel(new String[] {"수량", "1", "2", "3", "4", "5", "6", "7"}));
+		
+		JLabel lblNewLabel_6 = new JLabel("최근");
+		
+		JLabel lblNewLabel_7 = new JLabel("개의 파일만 보존 하도록");
+		
+		JButton btnNewButton = new JButton("설정저장");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if (comboBox_quantity_getSelectedIndex == 0) {
+					JOptionPane.showMessageDialog(null, "보존 파일의 갯수를 지정하세요.");
+				}else{
+
+					int YorN  = JOptionPane.showConfirmDialog(null, "저장하시겠습니까?", "파일 보존 갯수 설정", 0 );
+
+					if (YorN == 0){
+						HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
+						homeDisplay_panelMageHandler.setFileQuantity(bakQuantity);
+
+						lblveiw.setText("24시간 동안 /"+homeDisplay_panelMageHandler.getTimerBetween()+"분 간격 / 총"+homeDisplay_panelMageHandler.getTimerPeriod()+"회 집계 / "+homeDisplay_panelMageHandler.getFileQuantity()+"개 파일 보존");
+					}
+				}
 			}
 		});
 		
@@ -275,43 +358,61 @@ public class HomeDisplay {
 					.addContainerGap()
 					.addGroup(gl_panel_timer.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_timer.createSequentialGroup()
+							.addComponent(lblSd)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblveiw, GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE))
+						.addGroup(gl_panel_timer.createSequentialGroup()
 							.addComponent(lblNewLabel_2)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblNewLabel_3)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(combo_chooseMinute, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(label_1, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+							.addComponent(label_1, GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
 						.addGroup(gl_panel_timer.createSequentialGroup()
-							.addComponent(lblSd)
+							.addComponent(lblNewLabel_5)
+							.addGap(5)
+							.addComponent(lblNewLabel_6)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblveiw, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)))
+							.addComponent(comboBox_quantity, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblNewLabel_7, GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_timer.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, gl_panel_timer.createSequentialGroup()
+						.addComponent(btnNewButton)
+						.addGroup(gl_panel_timer.createParallelGroup(Alignment.TRAILING)
 							.addComponent(btnSettingSave)
-							.addGap(19))
-						.addGroup(gl_panel_timer.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnSdsd, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())))
+							.addComponent(btnSdsd, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)))
+					.addGap(41))
 		);
 		gl_panel_timer.setVerticalGroup(
-			gl_panel_timer.createParallelGroup(Alignment.LEADING)
+			gl_panel_timer.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_panel_timer.createSequentialGroup()
-					.addGap(46)
-					.addGroup(gl_panel_timer.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblSd)
-						.addComponent(lblveiw, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnSdsd))
-					.addGap(36)
-					.addGroup(gl_panel_timer.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_2)
-						.addComponent(lblNewLabel_3)
-						.addComponent(combo_chooseMinute, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnSettingSave)
-						.addComponent(label_1))
-					.addContainerGap(44, Short.MAX_VALUE))
+					.addContainerGap(39, Short.MAX_VALUE)
+					.addGroup(gl_panel_timer.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_timer.createSequentialGroup()
+							.addComponent(btnSdsd)
+							.addGap(36)
+							.addComponent(btnSettingSave)
+							.addGap(18)
+							.addComponent(btnNewButton))
+						.addGroup(gl_panel_timer.createSequentialGroup()
+							.addGroup(gl_panel_timer.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblSd)
+								.addComponent(lblveiw, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+							.addGap(36)
+							.addGroup(gl_panel_timer.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblNewLabel_2)
+								.addComponent(lblNewLabel_3)
+								.addComponent(combo_chooseMinute, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label_1))
+							.addGap(18)
+							.addGroup(gl_panel_timer.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblNewLabel_5)
+								.addComponent(lblNewLabel_6)
+								.addComponent(comboBox_quantity, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_7, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap())
 		);
 		panel_timer.setLayout(gl_panel_timer);
 		
@@ -425,16 +526,108 @@ public class HomeDisplay {
 		});
 		
 		JButton button_rw = new JButton("다시쓰기");
+		button_rw.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				txtStoreName.setText("");
+				txt_sAclassIP.setText("");
+				txt_sBclassIP.setText("");
+				txt_sCclassIP.setText("");
+				txt_sDclassIP.setText("");
+				txt_eAclassIP.setText("");
+				txt_eBclassIP.setText("");
+				txt_eCclassIP.setText("");
+				txt_eDclassIP.setText("");
+				
+			}
+		});
 		
 		JLabel lbl_glassImg01 = new JLabel("");
 		lbl_glassImg01.setIcon(new ImageIcon(HomeDisplay.class.getResource("/com/img/readingG_24.png")));
-		
-		txt_searchWord = new JTextField();
-		txt_searchWord.setColumns(10);
-		
-		JButton button_searching = new JButton("검색");
+
 		
 		JScrollPane scrollPane = new JScrollPane();
+		
+		DefaultComboBoxModel defaultComboUser = new DefaultComboBoxModel();
+		defaultComboUser.addElement("등록된 정보를 선택하세요");
+		
+		//==========================================이 아래부분 다시 보기
+		JComboBox comboBox_user = new JComboBox();
+		
+		comboBox_user.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				selectedUserName = (String) defaultComboUser.getSelectedItem();
+
+				HomeDisplay_panelMageHandler hp = new HomeDisplay_panelMageHandler();
+				String[][] userTable ;
+				
+				try {
+
+					//유저 목록 배열로 가져오기
+					userTable = hp.getUserList();
+
+					for (int j = 1; j < userTable.length; j++) {
+						
+						if (userTable[j][0].equalsIgnoreCase(selectedUserName)) {
+							
+							txtStoreName.setText(userTable[j][0]);
+							
+							txt_sAclassIP.setText(userTable[j][1].split("[.]")[0]);
+							txt_sBclassIP.setText(userTable[j][1].split("[.]")[1]);
+							txt_sCclassIP.setText(userTable[j][1].split("[.]")[2]);
+							txt_sDclassIP.setText(userTable[j][1].split("[.]")[3]);
+							
+							txt_eAclassIP.setText(userTable[j][2].split("[.]")[0]);
+							txt_eBclassIP.setText(userTable[j][2].split("[.]")[1]);
+							txt_eCclassIP.setText(userTable[j][2].split("[.]")[2]);
+							txt_eDclassIP.setText(userTable[j][2].split("[.]")[3]);
+							
+						}
+					}				
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "ERROR : 로그파일을 확인하세요.");
+					loginfo.txtWriterLogger(e2.getMessage());
+				}
+			}
+		});
+		
+		JButton button_searching = new JButton("조회");
+		button_searching.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+//				HashMap<Integer,String> renewHashMap = new HashMap<Integer,String>();
+				HomeDisplay_panelMageHandler hp = new HomeDisplay_panelMageHandler();
+				String[][] userTable ;
+				try {
+
+					//유저 목록 배열로 가져오기
+					userTable = hp.getUserList();
+					
+					//파일 목록 갱신
+					defaultComboUser.removeAllElements();
+					defaultComboUser.addElement("=대상자를 불러왔습니다.=");
+										
+					for (int j = 1; j < userTable.length; j++) {
+						defaultComboUser.addElement(userTable[j][0]);
+					}
+					
+				} catch (Exception ee) {
+					JOptionPane.showMessageDialog(null, "ERROR : 로그파일을 확인하세요.");
+					loginfo.txtWriterLogger(ee.getMessage());
+				}
+				
+			}
+		});
+		comboBox_user.setModel(defaultComboUser);
+		
+		JButton btnNewButton_2 = new JButton("삭제하기");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+			JOptionPane.showMessageDialog(null, "개발중.. 당분간..수정하기 기능으로 덮어쓰세요");
+			}
+		});
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -452,10 +645,10 @@ public class HomeDisplay {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(4)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(lbl_eIP)
-								.addComponent(lbl_sIP, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(lbl_eIP, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lbl_sIP, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
 									.addComponent(txt_sAclassIP, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
@@ -464,26 +657,29 @@ public class HomeDisplay {
 									.addComponent(txt_sCclassIP, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
 									.addGap(7)
 									.addComponent(txt_sDclassIP, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(txt_eAclassIP, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txt_eBclassIP, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txt_eCclassIP, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txt_eDclassIP, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(button_sv)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(button_rw)))))
+								.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+									.addGroup(gl_panel.createSequentialGroup()
+										.addComponent(txt_eAclassIP, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(txt_eBclassIP, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(txt_eCclassIP, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(txt_eDclassIP, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE))
+									.addGroup(gl_panel.createSequentialGroup()
+										.addComponent(button_rw)
+										.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+											.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(button_sv, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
 					.addGap(59)
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lbl_glassImg01)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txt_searchWord, GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-							.addGap(18)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(comboBox_user, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
 							.addComponent(button_searching, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE))
 					.addContainerGap())
@@ -494,15 +690,15 @@ public class HomeDisplay {
 					.addGap(16)
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(txt_searchWord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(button_searching))
+							.addComponent(button_searching)
+							.addComponent(comboBox_user, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addComponent(lbl_glassImg01)
 						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 							.addComponent(lblStoreName)
 							.addComponent(txtStoreName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lbl_IP)
 								.addComponent(lbl_ex))
@@ -521,42 +717,15 @@ public class HomeDisplay {
 								.addComponent(txt_eCclassIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txt_eDclassIP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lbl_eIP))
-							.addGap(30)
+							.addGap(31)
 							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(button_sv)
-								.addComponent(button_rw)))
+								.addComponent(button_rw))
+							.addGap(18)
+							.addComponent(btnNewButton_2))
 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
 					.addContainerGap())
 		);
-		
-		table_userList = new JTable();
-		scrollPane.setViewportView(table_userList);
-		table_userList.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"\uD589\uBCF5\uD574", "192.168.10.1", "192.168.10.255", "2017-02-15", "2017-02-16"},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"\uC0C1\uD638\uBA85", "\uC2DC\uC791IP", "\uC885\uB8CCIP", "\uCD5C\uCD08\uB4F1\uB85D\uC77C\uC790", "\uCD5C\uC885\uC218\uC815\uC77C\uC790"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table_userList.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.setLayout(gl_panel);
 		panel_mage.setLayout(gl_panel_mage);
 
@@ -568,147 +737,235 @@ public class HomeDisplay {
 		JPanel panel_static = new JPanel();
 		tabbedPane.addTab("통계      ", null, panel_static, null);
 
-		JLabel lblNewLabel_1 = new JLabel("* [통 계] ");
+		JLabel lblNewLabel_1 = new JLabel("* [집계 상태] ");
+		
+		JLabel lblDfdf = new JLabel("프로그램을 시작하세요.");
 		
 		JScrollPane scrollPane_log = new JScrollPane();
 		
 		JToggleButton tglbtnNewToggleButton = new JToggleButton("집계 시작");
 		tglbtnNewToggleButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
-				homeDisplay_panelMageHandler.btnCollection();
-			}
-		});
-		
-		JButton btnOpenFolder = new JButton("폴더열기");
-		
-		JButton btnRefresh_log = new JButton("새로고침");
-		JList jlist_view = new JList();
-		DefaultListModel defaultListModel_jlist_view = new DefaultListModel();
-		
-		btnRefresh_log.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				File file = new File(Set_properties.getData_path(),selectedFileName);
-				try {
-					if (!file.exists()) {
-						JOptionPane.showMessageDialog(null,  "파일이 존재 하지 않습니다.");
-					}
-					
-					FileReader fr = new FileReader(file);
-					BufferedReader br = new BufferedReader(fr);
-					
-					defaultListModel_jlist_view.removeAllElements();;
-					
-					for (int i = 0 ; br.ready() ; i++) {
-						defaultListModel_jlist_view.addElement(br.readLine());
-					}
 
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, "HomeDisplay_panelMageHandler.getfileCheck()의 오류"+e.getMessage());
+				int YorN  = JOptionPane.showConfirmDialog(null, "집계를 실행하겠습니까?", "집계시작", 0 );
+
+				if (YorN == 0){
+
+					if (collection_state == 0) {
+
+						HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
+						homeDisplay_panelMageHandler.btnCollection();
+
+						collection_state = 1;
+						lblDfdf.setText("## 집계 중 입니다. ##");
+
+					}else{
+						JOptionPane.showMessageDialog(null, "집계 중 입니다... 중지하고 재실행 하십시오.");
+					}
 				}
 			}
 		});
 		
-		JButton btnStopCollection = new JButton("집계 멈춤");
+		DefaultComboBoxModel defaultComboModel = new DefaultComboBoxModel();
+		defaultComboModel.addElement("목록을 조회하세요.");
+		DefaultListModel defaultListModel_jlist_view = new DefaultListModel();
+		
+		JButton btnOpenFolder = new JButton("내용보기");
+		btnOpenFolder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					File file = new File(Set_properties.getData_path(),selectedFileName);
+
+					if (selectedFileName =="" || selectedFileName.equalsIgnoreCase("=없는 파일은 재조회 하세요=") ) {
+						JOptionPane.showMessageDialog(null,  "파일을 선택하세요.");
+					}else if( !file.exists() ){
+						JOptionPane.showMessageDialog(null,  "파일이 없습니다. 재조회하세요.");
+					}else{
+						//리스트 목록 갱신
+						defaultListModel_jlist_view.removeAllElements();;
+						FileReader fr = new FileReader(file);
+						BufferedReader br = new BufferedReader(fr);
+
+						for (int i = 0 ; br.ready() ; i++) {
+							defaultListModel_jlist_view.addElement(br.readLine());
+						}
+
+					}
+					
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null,  "ERROR : 로그 파일을 확인하세요.");
+					loginfo.txtWriterLogger(e.getMessage());
+				}
+				
+			}
+		});
+		
+		JList jlist_view = new JList();
+
+		
+		JButton btnRefresh_log = new JButton("조  회");
+		btnRefresh_log.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				HashMap<Integer,String> renewHashMap = new HashMap<Integer,String>();
+				try {
+
+					//집계파일 설정값대로 자동 지우기
+					HomeDisplay_panelMageHandler hp = new HomeDisplay_panelMageHandler();
+					SaveFileHandler saveFileHandler = new SaveFileHandler();
+					saveFileHandler.autoDeleted(Integer.parseInt(hp.getFileQuantity()));
+					
+					//파일 목록 갱신
+					File file = new File(Set_properties.getData_path());
+					String[] stringList = file.list();
+					
+					defaultComboModel.removeAllElements();
+					defaultComboModel.addElement("=없는 파일은 재조회 하세요=");
+					
+					
+					for (int j = 0; j < stringList.length; j++) {
+						defaultComboModel.addElement(stringList[j]);
+					}
+					
+				
+					
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "[새로고침]의 오류"+e.getMessage());
+				}
+			}
+		});
+		
+		JButton btnStopCollection = new JButton("집계 중지");
 		btnStopCollection.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
-				homeDisplay_panelMageHandler.btnStopCollection();
-				
+					
+					int YorN  = JOptionPane.showConfirmDialog(null, "중지 하시겠습니까?", "집계중지", 0 );
+					
+					if (YorN == 0){
+						
+						HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
+						homeDisplay_panelMageHandler.btnStopCollection();
+						collection_state = 0;
+						lblDfdf.setText("프로그램을 시작하세요.");
+					}
 			}
 		});
 		
 		JComboBox comboBox_fileInfo = new JComboBox();
-		
-		DefaultComboBoxModel defaultComboModel = new DefaultComboBoxModel();
-		defaultComboModel.addElement("파일을 선택하세요.");
-		
-		String current_path = System.getProperty("user.dir");
-		File ab_estpc_properties = new File(current_path+"\\data");
-		String[] stringList = ab_estpc_properties.list();
-		HashMap<Integer,String> listHashMap = new HashMap<Integer,String>();
-
-		for (int j = 0; j < stringList.length; j++) {
-			listHashMap.put(j+1, stringList[j]);
-		}
-
-		if (defaultComboModel.getSize()<2) {
-			
-			for (int idkey = 1; idkey < listHashMap.size()+1; idkey++) {
-					defaultComboModel.addElement(listHashMap.get(idkey));
-			}
-			
-		}else{
-			
-			for (int i = 1; i < defaultComboModel.getSize(); i++) {
-				
-				for (int idkey = 1; idkey < listHashMap.size()+1; idkey++) {
-					
-					if (	!defaultComboModel.getElementAt(i).equals(listHashMap.get(idkey))) {
-						defaultComboModel.addElement(listHashMap.get(idkey));
-					}
-				}
-			}
-		}
-		
 		comboBox_fileInfo.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent e) {
 				
 				selectedFileName = (String) defaultComboModel.getSelectedItem();
 				
 			}
 		});
-		
-		
-//		comboBox_fileInfo.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent arg0) {
-//
-//				JOptionPane.showMessageDialog(null, defaultComboModel.getSelectedItem());
-//				
-//			}
-//		});
-		
 		comboBox_fileInfo.setModel(defaultComboModel);
+		
+		
+		JLabel lblNewLabel_4 = new JLabel("# 파일 목록 : ");
+		
+		JButton btnOpenData = new JButton("폴더열기");
+		btnOpenData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String openCommand = "cmd /c explorer "+Set_properties.getData_path();
+				
+				try {
+					Runtime.getRuntime().exec(openCommand);				
+					loginfo.txtWriterLogger(openCommand+" 명령어 실행됨");
+				} catch (Exception e) {
+					loginfo.txtWriterLogger(e.getMessage());
+				}
+				
+			}
+		});
+		
+
+		
+		JButton btnNewButton_1 = new JButton("로그보기");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					File file = new File(Set_properties.getLog_path(),Set_properties.getLog_file());
+
+					if( !file.exists() ){
+						JOptionPane.showMessageDialog(null,  "파일이 없습니다.");
+					}else{
+						//리스트 목록 갱신
+						defaultListModel_jlist_view.removeAllElements();;
+						FileReader fr = new FileReader(file);
+						BufferedReader br = new BufferedReader(fr);
+
+						for (int i = 0 ; br.ready() ; i++) {
+							defaultListModel_jlist_view.addElement(br.readLine());
+						}
+					}
+					
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null,  "ERROR : 로그 파일을 확인하세요.");
+					loginfo.txtWriterLogger(ex.getMessage());
+				}
+				
+			}
+		});
 		
 		GroupLayout gl_panel_static = new GroupLayout(panel_static);
 		gl_panel_static.setHorizontalGroup(
 			gl_panel_static.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_static.createSequentialGroup()
-					.addGap(51)
-					.addGroup(gl_panel_static.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane_log, GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
-						.addGroup(gl_panel_static.createSequentialGroup()
-							.addGap(6)
-							.addComponent(lblNewLabel_1)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(tglbtnNewToggleButton)
-							.addGap(18)
-							.addComponent(btnStopCollection)
-							.addPreferredGap(ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-							.addComponent(comboBox_fileInfo, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(btnRefresh_log)
-							.addGap(18)
-							.addComponent(btnOpenFolder)))
-					.addGap(36))
+					.addGap(60)
+					.addGroup(gl_panel_static.createParallelGroup(Alignment.TRAILING)
+						.addComponent(scrollPane_log, GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, gl_panel_static.createSequentialGroup()
+							.addGroup(gl_panel_static.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel_static.createSequentialGroup()
+									.addGap(10)
+									.addComponent(tglbtnNewToggleButton)
+									.addGap(18)
+									.addComponent(btnStopCollection))
+								.addGroup(gl_panel_static.createSequentialGroup()
+									.addComponent(lblNewLabel_1)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblDfdf, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)))
+							.addGap(72)
+							.addGroup(gl_panel_static.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(gl_panel_static.createSequentialGroup()
+									.addComponent(lblNewLabel_4)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnRefresh_log)
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(btnNewButton_1))
+								.addGroup(gl_panel_static.createSequentialGroup()
+									.addComponent(comboBox_fileInfo, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addComponent(btnOpenFolder)
+									.addGap(18)
+									.addComponent(btnOpenData)))
+							.addGap(1)))
+					.addGap(20))
 		);
 		gl_panel_static.setVerticalGroup(
 			gl_panel_static.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_static.createSequentialGroup()
-					.addGap(33)
+					.addGap(8)
+					.addGroup(gl_panel_static.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel_1)
+						.addComponent(lblNewLabel_4)
+						.addComponent(btnRefresh_log)
+						.addComponent(lblDfdf)
+						.addComponent(btnNewButton_1))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel_static.createParallelGroup(Alignment.BASELINE)
 						.addComponent(tglbtnNewToggleButton)
-						.addComponent(btnOpenFolder)
-						.addComponent(lblNewLabel_1)
 						.addComponent(btnStopCollection)
-						.addComponent(btnRefresh_log)
-						.addComponent(comboBox_fileInfo, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
-					.addGap(27, 27, Short.MAX_VALUE)
-					.addComponent(scrollPane_log, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+						.addComponent(comboBox_fileInfo, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnOpenFolder)
+						.addComponent(btnOpenData))
+					.addGap(27)
+					.addComponent(scrollPane_log, GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
 					.addGap(18))
 		);
 		
@@ -718,4 +975,5 @@ public class HomeDisplay {
 		panel_static.setLayout(gl_panel_static);
 
 	}
+	
 }

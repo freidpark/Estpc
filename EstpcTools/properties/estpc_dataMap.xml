@@ -11,19 +11,40 @@
             <store_regitDay/>
             <store_modifiDay/>
         </store_num>
+        <store_num id="우리">
+            <store_name>우리</store_name>
+            <store_sIP>192.168.10.1</store_sIP>
+            <store_eIP>192.168.10.20</store_eIP>
+            <store_regitDay>2017-6-9</store_regitDay>
+            <store_modifiDay>2017-6-9</store_modifiDay>
+        </store_num>
         <store_num id="행복">
             <store_name>행복</store_name>
-            <store_sIP>110.15.193.130</store_sIP>
-            <store_eIP>110.15.193.230</store_eIP>
+            <store_sIP>192.168.10.1</store_sIP>
+            <store_eIP>192.168.10.35</store_eIP>
             <store_regitDay>2017-6-9</store_regitDay>
             <store_modifiDay>2017-6-9</store_modifiDay>
         </store_num>
         <store_num id="스타">
             <store_name>스타</store_name>
-            <store_sIP>110.15.192.130</store_sIP>
-            <store_eIP>110.15.192.180</store_eIP>
-            <store_regitDay>2017-2-15</store_regitDay>
-            <store_modifiDay>2017-2-15</store_modifiDay>
+            <store_sIP>192.168.10.1</store_sIP>
+            <store_eIP>192.168.10.45</store_eIP>
+            <store_regitDay>2017-6-9</store_regitDay>
+            <store_modifiDay>2017-6-9</store_modifiDay>
+        </store_num>
+        <store_num id="아프">
+            <store_name>아프</store_name>
+            <store_sIP>192.168.10.1</store_sIP>
+            <store_eIP>192.168.10.100</store_eIP>
+            <store_regitDay>2017-6-9</store_regitDay>
+            <store_modifiDay>2017-3-17</store_modifiDay>
+        </store_num>
+        <store_num id="하나">
+            <store_name>하나</store_name>
+            <store_sIP>192.168.10.12</store_sIP>
+            <store_eIP>192.168.10.20</store_eIP>
+            <store_regitDay>2017-3-17</store_regitDay>
+            <store_modifiDay>2017-3-17</store_modifiDay>
         </store_num>
     </user>
 </ui-query-mapping>
