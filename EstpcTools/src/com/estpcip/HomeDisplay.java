@@ -45,6 +45,8 @@ import com.modelFrame.loggerListener.LoggerListener;
 import com.modelFrame.loggerListener.WriterLogger;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
 
 public class HomeDisplay {
 
@@ -120,19 +122,37 @@ public class HomeDisplay {
 		menuBar.add(mnMa);
 
 		JMenuItem menuItem = new JMenuItem("인쇄");
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "아직 개발중 입니다.");
+			}
+		});
+		menuItem.setIcon(new ImageIcon(HomeDisplay.class.getResource("/com/img/btnPrinter_12.gif")));
 		mnMa.add(menuItem);
 
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("종료");
+		mntmNewMenuItem_5.setIcon(new ImageIcon(HomeDisplay.class.getResource("/com/img/exit_12.gif")));
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int ret = JOptionPane.showConfirmDialog(null, "종료 하시겠습니까?", "종료",0);
+				if (ret == JOptionPane.YES_NO_OPTION) {
+					System.exit(0);
+				}
+			}
+		});
 		mnMa.add(mntmNewMenuItem_5);
 
 		JMenu mnNewMenu = new JMenu("Management");
 		menuBar.add(mnNewMenu);
 
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("대상등록");
+		mntmNewMenuItem_2.setIcon(new ImageIcon(HomeDisplay.class.getResource("/com/img/UserAnalysis_12.gif")));
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 //				UserManageFrame userManageFrame = new UserManageFrame();
+				JOptionPane.showMessageDialog(null, "아직 개발중 입니다.");
 			}
 		});
 
@@ -142,15 +162,43 @@ public class HomeDisplay {
 		menuBar.add(mnNewMenu_1);
 
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("통합보고서");
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "아직 개발중 입니다.");
+			}
+		});
+		mntmNewMenuItem_6.setIcon(new ImageIcon(HomeDisplay.class.getResource("/com/img/magement_12.gif")));
 		mnNewMenu_1.add(mntmNewMenuItem_6);
 
 		JMenu mnNewMenu_2 = new JMenu("Help");
 		menuBar.add(mnNewMenu_2);
 
 		JMenuItem mntmNewMenuItem = new JMenuItem("On-Line");
+		mntmNewMenuItem.setIcon(new ImageIcon(HomeDisplay.class.getResource("/com/img/favorite_12.gif")));
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				JOptionPane.showMessageDialog(null, "Favorite URL Site -  \n"
+						+ "피시방 닷컴 - http://www.pcbang.com \n"
+						+ "멀티클릭 - http://www.multiclick.co.kr \n"
+						+ "원격지원 - https://www.teamviewer.com"
+						+ "", "Favorite URL Site ", 1);
+				
+			}
+		});
 		mnNewMenu_2.add(mntmNewMenuItem);
 
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Version");
+		mntmNewMenuItem_1.setIcon(new ImageIcon(HomeDisplay.class.getResource("/com/img/version_12.gif")));
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JOptionPane.showMessageDialog(null, "EstPCTools - Ver. 0.9.170321 \n"
+						+ "This Program is free,  cb-park(freid) © All Rights Reserved. ", "Version information", 1);
+				
+			}
+		});
 		mnNewMenu_2.add(mntmNewMenuItem_1);
 		
 		
@@ -164,6 +212,77 @@ public class HomeDisplay {
 		tabbedPane.addTab("Prolog   ", null, panel_prolog, null);
 
 		JLabel lblNewLabel = new JLabel("여기는 prolog 입니다.");
+		
+		
+		// 통계 레이블 시작
+		JLabel lbl_light = new JLabel("");
+		ImageIcon lbl_light_img ;
+		if (collection_state == 0) {
+			lbl_light_img = new ImageIcon(HomeDisplay.class.getResource("/com/img/GreenSignalLight_12.gif"));
+		}else{
+			lbl_light_img = new ImageIcon(HomeDisplay.class.getResource("/com/img/RedSignalLight_12.gif"));
+		}
+		JLabel lblDfdf = new JLabel("프로그램을 시작하세요.");
+		// 통계 레이블 종료
+		
+		JPopupMenu popupMenu = new JPopupMenu();
+		addPopup(panel_prolog, popupMenu);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("집계시작");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ImageIcon lbl_light_img ;
+
+				int YorN  = JOptionPane.showConfirmDialog(null, "집계를 실행하겠습니까?", "집계시작", 0 );
+
+				if (YorN == 0){
+
+					if (collection_state == 0) {
+
+						HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
+						homeDisplay_panelMageHandler.btnCollection();
+
+						collection_state = 1;
+						lblDfdf.setText("## 집계 중 입니다. ##");
+						lbl_light_img = new ImageIcon(HomeDisplay.class.getResource("/com/img/RedSignalLight_12.gif"));
+						lbl_light.setIcon(lbl_light_img);
+
+					}else{
+						JOptionPane.showMessageDialog(null, "집계 중 입니다... 중지하고 재실행 하십시오.");
+					}
+				}
+			
+				
+				
+			}
+		});
+		mntmNewMenuItem_3.setIcon(new ImageIcon(HomeDisplay.class.getResource("/com/img/GreenSignalLight_12.gif")));
+		popupMenu.add(mntmNewMenuItem_3);
+		
+
+		JMenuItem menuItem_1 = new JMenuItem("집계중지");
+		menuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ImageIcon  lbl_light_img;
+
+				int YorN  = JOptionPane.showConfirmDialog(null, "중지 하시겠습니까?", "집계중지", 0 );
+
+				if (YorN == 0){
+
+					HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
+					homeDisplay_panelMageHandler.btnStopCollection();
+					collection_state = 0;
+					lblDfdf.setText("프로그램을 시작하세요.");
+					lbl_light_img = new ImageIcon(HomeDisplay.class.getResource("/com/img/GreenSignalLight_12.gif"));
+					lbl_light.setIcon(lbl_light_img);
+				}
+				
+			}
+		});
+		menuItem_1.setIcon(new ImageIcon(HomeDisplay.class.getResource("/com/img/RedSignalLight_12.gif")));
+		popupMenu.add(menuItem_1);
 		GroupLayout gl_panel_prolog = new GroupLayout(panel_prolog);
 		gl_panel_prolog.setHorizontalGroup(
 				gl_panel_prolog.createParallelGroup(Alignment.LEADING)
@@ -739,13 +858,17 @@ public class HomeDisplay {
 
 		JLabel lblNewLabel_1 = new JLabel("* [집계 상태] ");
 		
-		JLabel lblDfdf = new JLabel("프로그램을 시작하세요.");
 		
 		JScrollPane scrollPane_log = new JScrollPane();
+		
+		
+
 		
 		JToggleButton tglbtnNewToggleButton = new JToggleButton("집계 시작");
 		tglbtnNewToggleButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				ImageIcon lbl_light_img ;
 
 				int YorN  = JOptionPane.showConfirmDialog(null, "집계를 실행하겠습니까?", "집계시작", 0 );
 
@@ -758,6 +881,8 @@ public class HomeDisplay {
 
 						collection_state = 1;
 						lblDfdf.setText("## 집계 중 입니다. ##");
+						lbl_light_img = new ImageIcon(HomeDisplay.class.getResource("/com/img/RedSignalLight_12.gif"));
+						lbl_light.setIcon(lbl_light_img);
 
 					}else{
 						JOptionPane.showMessageDialog(null, "집계 중 입니다... 중지하고 재실행 하십시오.");
@@ -765,7 +890,7 @@ public class HomeDisplay {
 				}
 			}
 		});
-		
+		lbl_light.setIcon(lbl_light_img);
 		DefaultComboBoxModel defaultComboModel = new DefaultComboBoxModel();
 		defaultComboModel.addElement("목록을 조회하세요.");
 		DefaultListModel defaultListModel_jlist_view = new DefaultListModel();
@@ -827,8 +952,6 @@ public class HomeDisplay {
 						defaultComboModel.addElement(stringList[j]);
 					}
 					
-				
-					
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 					e.printStackTrace();
@@ -840,16 +963,20 @@ public class HomeDisplay {
 		JButton btnStopCollection = new JButton("집계 중지");
 		btnStopCollection.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					
-					int YorN  = JOptionPane.showConfirmDialog(null, "중지 하시겠습니까?", "집계중지", 0 );
-					
-					if (YorN == 0){
-						
-						HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
-						homeDisplay_panelMageHandler.btnStopCollection();
-						collection_state = 0;
-						lblDfdf.setText("프로그램을 시작하세요.");
-					}
+
+				ImageIcon  lbl_light_img;
+
+				int YorN  = JOptionPane.showConfirmDialog(null, "중지 하시겠습니까?", "집계중지", 0 );
+
+				if (YorN == 0){
+
+					HomeDisplay_panelMageHandler homeDisplay_panelMageHandler = new HomeDisplay_panelMageHandler();
+					homeDisplay_panelMageHandler.btnStopCollection();
+					collection_state = 0;
+					lblDfdf.setText("프로그램을 시작하세요.");
+					lbl_light_img = new ImageIcon(HomeDisplay.class.getResource("/com/img/GreenSignalLight_12.gif"));
+					lbl_light.setIcon(lbl_light_img);
+				}
 			}
 		});
 		
@@ -912,60 +1039,109 @@ public class HomeDisplay {
 			}
 		});
 		
+		JButton btnNewButton_3 = new JButton("누적보기");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					
+
+					
+					File file = new File(Set_properties.getAppAccum_path(),Set_properties.getAppAccum_file());
+
+					if (selectedFileName =="" || selectedFileName.equalsIgnoreCase("=없는 파일은 재조회 하세요=") ) {
+						JOptionPane.showMessageDialog(null,  "파일을 선택하세요.");
+					}else if( !file.exists() ){
+						JOptionPane.showMessageDialog(null,  "파일이 없습니다. 조회 후 볼 수 있습니다.");
+					}else{
+						
+						//누적 파일을 만든다.
+						SaveFileHandler sf = new SaveFileHandler();
+						sf.mkAccumulation(selectedFileName);
+						
+						//리스트 목록 갱신
+						defaultListModel_jlist_view.removeAllElements();;
+						FileReader fr = new FileReader(file);
+						BufferedReader br = new BufferedReader(fr);
+
+						for (int i = 0 ; br.ready() ; i++) {
+							defaultListModel_jlist_view.addElement(br.readLine());
+						}
+
+					}
+					
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null,  "ERROR : 로그 파일을 확인하세요.");
+					loginfo.txtWriterLogger(e.getMessage());
+				}
+				
+				
+			}
+		});
+		
+		
 		GroupLayout gl_panel_static = new GroupLayout(panel_static);
 		gl_panel_static.setHorizontalGroup(
 			gl_panel_static.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_static.createSequentialGroup()
 					.addGap(60)
-					.addGroup(gl_panel_static.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_panel_static.createParallelGroup(Alignment.LEADING)
 						.addComponent(scrollPane_log, GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, gl_panel_static.createSequentialGroup()
+						.addGroup(gl_panel_static.createSequentialGroup()
 							.addGroup(gl_panel_static.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel_static.createSequentialGroup()
 									.addGap(10)
 									.addComponent(tglbtnNewToggleButton)
-									.addGap(18)
+									.addGap(25)
 									.addComponent(btnStopCollection))
 								.addGroup(gl_panel_static.createSequentialGroup()
 									.addComponent(lblNewLabel_1)
 									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lbl_light, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(lblDfdf, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)))
-							.addGap(72)
-							.addGroup(gl_panel_static.createParallelGroup(Alignment.LEADING, false)
+							.addPreferredGap(ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+							.addGroup(gl_panel_static.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBox_fileInfo, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_panel_static.createSequentialGroup()
 									.addComponent(lblNewLabel_4)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnRefresh_log)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(btnNewButton_1))
-								.addGroup(gl_panel_static.createSequentialGroup()
-									.addComponent(comboBox_fileInfo, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(btnOpenFolder)
-									.addGap(18)
-									.addComponent(btnOpenData)))
-							.addGap(1)))
+									.addComponent(btnRefresh_log)))
+							.addGap(18)
+							.addGroup(gl_panel_static.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(btnOpenData, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnOpenFolder, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGap(18)
+							.addGroup(gl_panel_static.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnNewButton_3)
+								.addComponent(btnNewButton_1))
+							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGap(20))
 		);
 		gl_panel_static.setVerticalGroup(
 			gl_panel_static.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_static.createSequentialGroup()
+					.addGroup(gl_panel_static.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_static.createSequentialGroup()
+							.addGap(8)
+							.addGroup(gl_panel_static.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblNewLabel_1)
+								.addComponent(lblNewLabel_4)
+								.addComponent(btnRefresh_log, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnOpenData, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblDfdf)))
+						.addGroup(gl_panel_static.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lbl_light, GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)))
 					.addGap(8)
-					.addGroup(gl_panel_static.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_1)
-						.addComponent(lblNewLabel_4)
-						.addComponent(btnRefresh_log)
-						.addComponent(lblDfdf)
-						.addComponent(btnNewButton_1))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel_static.createParallelGroup(Alignment.BASELINE)
 						.addComponent(tglbtnNewToggleButton)
 						.addComponent(btnStopCollection)
 						.addComponent(comboBox_fileInfo, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnOpenFolder)
-						.addComponent(btnOpenData))
+						.addComponent(btnNewButton_3))
 					.addGap(27)
-					.addComponent(scrollPane_log, GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+					.addComponent(scrollPane_log, GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
 					.addGap(18))
 		);
 		
@@ -975,5 +1151,21 @@ public class HomeDisplay {
 		panel_static.setLayout(gl_panel_static);
 
 	}
-	
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
 }

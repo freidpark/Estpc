@@ -21,6 +21,8 @@
         <app_path>C:\Users\freid\git\Estpc\EstpcTools\app</app_path>
         <app_file>ipscan_221-bawday.exe</app_file>
         <appSaveFiles_path>C:\Users\freid\git\Estpc\EstpcTools\app\saveFiles</appSaveFiles_path>
+        <appAccum_path>C:\Users\freid\git\Estpc\EstpcTools\app\saveFiles\accum</appAccum_path>
+        <appAccum_file>accumulation.txt</appAccum_file>
         <requestInfo id="data_info" type="SQ">
             <attribute alias="" type="STRING" value="로그경로"/>
             <data_path>C:\Users\freid\git\Estpc\EstpcTools\data</data_path>

@@ -32,6 +32,8 @@ public class Set_properties  {
 	private static String data_path;
 	private static String data_file;
 	private static String timer_period;
+	private static String appAccum_path;
+	private static String appAccum_file;
 	
 
 	private static String current_path;
@@ -164,6 +166,7 @@ public class Set_properties  {
 			document.getElementsByTagName("app_path").item(0).setTextContent(current_path+"\\app");
 			document.getElementsByTagName("appSaveFiles_path").item(0).setTextContent(current_path+"\\app\\saveFiles");
 			document.getElementsByTagName("data_path").item(0).setTextContent(current_path+"\\data");
+			document.getElementsByTagName("appAccum_path").item(0).setTextContent(current_path+"\\app\\saveFiles\\accum");
 			
 			FileOutputStream fos = new FileOutputStream(estpc_properties);
 			OutputFormat outputFormat = new OutputFormat(document);
@@ -220,6 +223,8 @@ public class Set_properties  {
 					app_path = element_requestInfo.getElementsByTagName("app_path").item(0).getTextContent();
 					app_file = element_requestInfo.getElementsByTagName("app_file").item(0).getTextContent();
 					appSaveFiles_path = element_requestInfo.getElementsByTagName("appSaveFiles_path").item(0).getTextContent();
+					appAccum_path = element_requestInfo.getElementsByTagName("appAccum_path").item(0).getTextContent();
+					appAccum_file = element_requestInfo.getElementsByTagName("appAccum_file").item(0).getTextContent();
 					break;
 					
 				case "data_info":
@@ -287,6 +292,22 @@ public class Set_properties  {
 	public static String getTime_period() {
 		return timer_period;
 	}
+
+	public static String getAppAccum_path() {
+		return appAccum_path;
+	}
+
+	public static String getAppAccum_file() {
+		return appAccum_file;
+	}
+
+	//	public static void setAppAccum_path(String appAccum_path) {
+	//		Set_properties.appAccum_path = appAccum_path;
+	//	}
+
+	//	public static void setAppAccum_file(String appAccum_file) {
+	//		Set_properties.appAccum_file = appAccum_file;
+	//	}
 
 	//	public static void setTime_period(String time_period) {
 	//		Set_properties.time_period = time_period;

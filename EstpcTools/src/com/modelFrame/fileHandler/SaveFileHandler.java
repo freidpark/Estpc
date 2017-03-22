@@ -1,11 +1,13 @@
 package com.modelFrame.fileHandler;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.Calendar;
-import java.util.HashMap;
 
 import com.modelFrame.loggerListener.LoggerListener;
 import com.modelFrame.loggerListener.WriterLogger;
@@ -22,6 +24,7 @@ public class SaveFileHandler {
 	int currentDate;
 	int currentHour;
 	int currentMinute;
+	int currentScend;
 	
 	LoggerListener loginfo = new WriterLogger();
 	
@@ -152,7 +155,7 @@ public class SaveFileHandler {
 			fw = new FileWriter(file, true);
 		    bw = new BufferedWriter(fw);
 			pw = new PrintWriter(bw);
-			pw.println(currentDate+"일 "+currentHour+":"+currentMinute+"   "+count+"회차   PC_ON : "+alive+"  -   "+userName);
+			pw.println(registerstataticTime() +"   "+count+"회차   PC_ON : "+alive+"  -   "+userName);
 			pw.close();
 			
 		} catch (Exception e) {
@@ -171,8 +174,8 @@ public class SaveFileHandler {
 			fw = new FileWriter(file, true);
 			bw = new BufferedWriter(fw);
 			pw = new PrintWriter(bw);
-			pw.println(" ");
-			pw.println(" ");
+			pw.println("                                             ");
+			pw.println("                                             ");
 			pw.close();
 
 		} catch (Exception e) {
@@ -189,41 +192,95 @@ public class SaveFileHandler {
 		int d = cal.get(Calendar.DATE);
 		int h = cal.get(Calendar.HOUR_OF_DAY);
 		int m = cal.get(Calendar.MINUTE);
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("집계시작 ");
 		
 		switch (Integer.toString(d).length()) {
 		case 1 :
 			String stringDay = "0"+Integer.toString(d);
-			currentDate = Integer.parseInt(stringDay);
+			sb.append(stringDay);
 			break;
 			
 		default :
-			currentDate=d;
+			sb.append(d);
 			break;
 		}
+		sb.append("일 ");
 		
 		switch (Integer.toString(h).length()) {
 		case 1 :
 			String stringDate = "0"+Integer.toString(h);
-			currentHour = Integer.parseInt(stringDate);
+			sb.append(stringDate);
 			break;
 			
 		default :
-			currentHour=h;
+			sb.append(h);
 			break;
 		}
+		sb.append("시 ");
 		
 		switch (Integer.toString(m).length()) {
 		case 1 :
 			String stringMinute = "0"+Integer.toString(m);
-			currentMinute = Integer.parseInt(stringMinute);
+			sb.append(stringMinute);
 			break;
 			
 		default :
-			currentMinute=m;
+			sb.append(m);
 			break;
 		}
-		loginfo.txtWriterLogger("집계시작 "+currentDate+"일 "+currentHour+"시 "+currentMinute+"분");
+		sb.append("분");
+		
+		loginfo.txtWriterLogger(sb.toString());
 	}
+	
+	public String registerstataticTime(){
+		Calendar cal = Calendar.getInstance();
+		int d = cal.get(Calendar.DATE);
+		int h = cal.get(Calendar.HOUR_OF_DAY);
+		int m = cal.get(Calendar.MINUTE);
+		StringBuilder sb = new StringBuilder();
+		
+		switch (Integer.toString(d).length()) {
+		case 1 :
+			String stringDay = "0"+Integer.toString(d);
+			sb.append(stringDay);
+			break;
+			
+		default :
+			sb.append(d);
+			break;
+		}
+		sb.append("일 ");
+		
+		switch (Integer.toString(h).length()) {
+		case 1 :
+			String stringDate = "0"+Integer.toString(h);
+			sb.append(stringDate);
+			break;
+			
+		default :
+			sb.append(h);
+			break;
+		}
+		sb.append(":");
+		
+		switch (Integer.toString(m).length()) {
+		case 1 :
+			String stringMinute = "0"+Integer.toString(m);
+			sb.append(stringMinute);
+			break;
+			
+		default :
+			sb.append(m);
+			break;
+		}
+		sb.append("   ");
+		
+		return sb.toString();
+	}
+	
 
 	public void autoDeleted(int fileQuantity){
 		try {
@@ -275,6 +332,144 @@ public class SaveFileHandler {
 	
 	public void selectDelet(){
 		
+	}
+	
+	public StringBuilder registerTime(){
+		Calendar cal = Calendar.getInstance();
+		int h = cal.get(Calendar.HOUR_OF_DAY);
+		int m = cal.get(Calendar.MINUTE);
+		int s = cal.get(Calendar.SECOND);
+		StringBuilder sb = new StringBuilder();
+		
+		switch (Integer.toString(h).length()) {
+		case 1 :
+			String stringDate = "0"+Integer.toString(h);
+			sb.append(stringDate);
+			break;
+			
+		default :
+			sb.append(h);
+			break;
+		}
+		sb.append(":");
+		
+		switch (Integer.toString(m).length()) {
+		case 1 :
+			String stringMinute = "0"+Integer.toString(m);
+			sb.append(stringMinute);
+			break;
+			
+		default :
+			sb.append(m);
+			break;
+		}
+		sb.append(":");
+		
+		switch (Integer.toString(s).length()) {
+		case 1 :
+			String stringDay = "0"+Integer.toString(s);
+			sb.append(stringDay);
+			break;
+			
+		default :
+			sb.append(s);
+			break;
+		}
+		
+		loginfo.txtWriterLogger("누적수행 - 시간 : "+sb.toString());
+		return sb;
+	}
+	
+	public void mkAccumulation(String selectedFileName){
+		
+		HomeDisplay_panelMageHandler hp = new HomeDisplay_panelMageHandler();
+		String[][] userTable = hp.getUserList();
+		String selectedUserName;
+		int allTotal = 0 ; 
+		int tmp = 0 ; 
+		double[] rate = new double[userTable.length]  ;
+		String[] percent = new String[userTable.length]  ;
+		
+		try {
+			
+			//개별 유저값을 더한 총값 구하기
+			for (int i = 1; i < userTable.length; i++) {
+				tmp = extractAccumulation(selectedFileName,userTable[i][0]);
+				allTotal += tmp;
+				}
+			
+			//개별 유저값의 비율구하기
+			DecimalFormat df = new DecimalFormat("##0.0%"); // 백분율로 변환...
+			for (int i = 1; i < rate.length; i++) {
+				rate[i] =  (double) extractAccumulation(selectedFileName,userTable[i][0]) / (double) allTotal;
+				percent[i] = df.format(rate[i]);
+			}
+			
+			
+			//파일에 쓰기
+			CallFileHandler cf = new CallFileHandler();
+			File accumFile = new File(Set_properties.getAppAccum_path(),Set_properties.getAppAccum_file());
+			FileWriter fw = new FileWriter(accumFile, false);
+			BufferedWriter bw = new BufferedWriter(fw);
+			PrintWriter pw = new PrintWriter(bw);
+			pw.println(" ");
+			pw.println("'IP scanner 2.21' 로 집계한 정보를 보여줍니다.");
+			pw.println(" ");
+			pw.println("파일이름 : "+selectedFileName);
+			pw.println("취합시간 : "+cf.currentTimeBaseYMD()+"    "+ registerTime());
+			pw.println(" ");
+			pw.println("총누적( "+allTotal+" )     비율(100%)      대상            .");
+			pw.println("-------------------------------------------------------------------");
+			for (int i = 1; i < userTable.length; i++) {
+			pw.println("      "+extractAccumulation(selectedFileName,userTable[i][0])+"           "+percent[i]+"          "+userTable[i][0]);
+			}
+			
+			pw.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			loginfo.txtWriterLogger("SaveFileHandler>>accumulation()의 오류 : "+e.getMessage());
+		}
+		
+	}
+	
+	public int extractAccumulation(String selectedFileName, String selectedUserName){
+
+		String contentLine ;
+		String shortcontent;
+		int total = 0;
+		int tmp = 0;
+		try {
+			File accumFile = new File(Set_properties.getData_path(),selectedFileName);
+			FileReader fr = new FileReader(accumFile);
+			BufferedReader br = new BufferedReader(fr);
+			
+			// (?i) <- "찾을 문자열"에 대소문자 구분을 없애고
+			// .*   <- 문자열이 행의 어디에 있든지 찾을 수 있게
+			String findStr = "(?i).*" + selectedUserName + ".*";
+			int lineNumber = 1; 
+
+			while(br.ready()){
+
+				contentLine = br.readLine();
+
+				if (contentLine.matches(findStr)){
+					shortcontent = contentLine.substring(29, 32).trim();
+					if (!contentLine.isEmpty()) {
+						tmp= Integer.parseInt(shortcontent);
+						total += tmp;
+//						System.out.format("%3d: %s%n", lineNumber,contentLine);
+						lineNumber++; // 행 번호 증가
+					}
+				}
+			}
+
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			loginfo.txtWriterLogger("SaveFileHandler>>extractAccumulation()의 오류 : "+e.getMessage());
+		}
+		return total;
 	}
 	
 }
